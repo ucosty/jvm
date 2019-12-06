@@ -16,6 +16,7 @@ func main() {
 	// Load the intrinsics
 	for _, class := range intrinsics.Classes() {
 		fmt.Printf("Loading intrinsic class: %s\n", class.Name)
+		classes[class.Name] = &class
 	}
 
 	// Load the class from the CLI
