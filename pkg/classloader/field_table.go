@@ -7,8 +7,10 @@ import (
 )
 
 func parseFieldTable(r io.Reader, h *classHeader) (err error) {
-	binary.Read(r, binary.BigEndian, &h.FieldCount)
-	// fmt.Printf("Loading %d field table entries\n", h.FieldCount)
+	if err := binary.Read(r, binary.BigEndian, &h.FieldCount); err != nil {
+		return err
+	}
+
 	h.FieldTable = make([]fieldEntry, h.FieldCount)
 	for i := 0; i < int(h.FieldCount); i++ {
 		h.FieldTable[i], err = parseFieldTableEntry(r, h)
@@ -24,10 +26,18 @@ func getFieldName(index uint16, h *classHeader) string {
 }
 
 func parseFieldTableEntry(r io.Reader, h *classHeader) (entry fieldEntry, err error) {
-	binary.Read(r, binary.BigEndian, &entry.AccessFlags)
-	binary.Read(r, binary.BigEndian, &entry.NameIndex)
-	binary.Read(r, binary.BigEndian, &entry.DescriptorIndex)
-	binary.Read(r, binary.BigEndian, &entry.AttributesCount)
+	if err := binary.Read(r, binary.BigEndian, &entry.AccessFlags); err != nil {
+		return entry, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &entry.NameIndex); err != nil {
+		return entry, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &entry.DescriptorIndex); err != nil {
+		return entry, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &entry.AttributesCount); err != nil {
+		return entry, err
+	}
 
 	if int(entry.NameIndex) > len(h.ConstantPoolTable) {
 		return entry, fmt.Errorf("invalid name index %d > %d", int(entry.NameIndex), len(h.ConstantPoolTable))
@@ -40,6 +50,6 @@ func parseFieldTableEntry(r io.Reader, h *classHeader) (entry fieldEntry, err er
 			return fieldEntry{}, err
 		}
 	}
-	// fmt.Printf("Field: AccessFlags = %d, NameIndex = %d, Name = %s, DescriptorIndex = %d, DescriptorName = %s, AttributesCount = %d\n", entry.AccessFlags, entry.NameIndex, getFieldName(entry.NameIndex, h), entry.DescriptorIndex, getFieldName(entry.DescriptorIndex, h), entry.AttributesCount)
+
 	return entry, nil
 }

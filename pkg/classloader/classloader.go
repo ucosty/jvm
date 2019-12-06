@@ -22,12 +22,12 @@ func readClassFile(filename string) ([]byte, error) {
 	}
 
 	var size = stats.Size()
-	bytes := make([]byte, size)
+	fileBytes := make([]byte, size)
 
 	buffer := bufio.NewReader(file)
-	_, err = buffer.Read(bytes)
+	_, err = buffer.Read(fileBytes)
 
-	return bytes, err
+	return fileBytes, err
 }
 
 func getClassName(index uint16, h *classHeader) string {
@@ -56,25 +56,30 @@ func parseHeader(classBytes []byte) (class *JavaClass, err error) {
 	var header classHeader
 	classReader := bytes.NewReader(classBytes)
 
-	binary.Read(classReader, binary.BigEndian, &header.Magic)
-	binary.Read(classReader, binary.BigEndian, &header.MinorVersion)
-	binary.Read(classReader, binary.BigEndian, &header.MajorVersion)
+	if err := binary.Read(classReader, binary.BigEndian, &header.Magic); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(classReader, binary.BigEndian, &header.MinorVersion); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(classReader, binary.BigEndian, &header.MajorVersion); err != nil {
+		return nil, err
+	}
 
 	// Read the ConstantPoolTable
 	if err := parseConstantPool(classReader, &header); err != nil {
 		return nil, err
 	}
 
-	binary.Read(classReader, binary.BigEndian, &header.AccessFlags)
-	binary.Read(classReader, binary.BigEndian, &header.ClassConstantPoolIndex)
-	binary.Read(classReader, binary.BigEndian, &header.SuperclassConstantPoolIndex)
-
-	// fmt.Printf("AccessFlags: %d\n", header.AccessFlags)
-	// fmt.Printf("ClassConstantPoolIndex: %d\n", header.ClassConstantPoolIndex)
-	// fmt.Printf("SuperclassConstantPoolIndex: %d\n", header.SuperclassConstantPoolIndex)
-
-	// fmt.Printf("Class name = %s\n", getClassName(header.ClassConstantPoolIndex, &header))
-	// fmt.Printf("Superclass name = %s\n", getClassName(header.SuperclassConstantPoolIndex, &header))
+	if err := binary.Read(classReader, binary.BigEndian, &header.AccessFlags); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(classReader, binary.BigEndian, &header.ClassConstantPoolIndex); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(classReader, binary.BigEndian, &header.SuperclassConstantPoolIndex); err != nil {
+		return nil, err
+	}
 
 	// Read the InterfaceTable
 	if err := parseInterfaceTable(classReader, &header); err != nil {

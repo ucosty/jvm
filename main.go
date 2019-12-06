@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"java-hackery/pkg/classloader"
 	"java-hackery/pkg/intrinsics"
 	"java-hackery/pkg/jvm"
@@ -15,7 +14,6 @@ func main() {
 
 	// Load the intrinsics
 	for _, class := range intrinsics.Classes() {
-		fmt.Printf("Loading intrinsic class: %s\n", class.Name)
 		classes[class.Name] = &class
 	}
 

@@ -7,8 +7,10 @@ import (
 )
 
 func parseMethodTable(r io.Reader, h *classHeader) (err error) {
-	binary.Read(r, binary.BigEndian, &h.MethodCount)
-	// fmt.Printf("Loading %d Method table entries\n", h.MethodCount)
+	if err := binary.Read(r, binary.BigEndian, &h.MethodCount); err != nil {
+		return err
+	}
+
 	h.MethodTable = make([]methodEntry, h.MethodCount)
 	for i := 0; i < int(h.MethodCount); i++ {
 		h.MethodTable[i], err = parseMethodTableEntry(r, h)
@@ -20,16 +22,23 @@ func parseMethodTable(r io.Reader, h *classHeader) (err error) {
 }
 
 func parseMethodTableEntry(r io.Reader, h *classHeader) (entry methodEntry, err error) {
-	binary.Read(r, binary.BigEndian, &entry.AccessFlags)
-	binary.Read(r, binary.BigEndian, &entry.NameIndex)
-	binary.Read(r, binary.BigEndian, &entry.DescriptorIndex)
-	binary.Read(r, binary.BigEndian, &entry.AttributesCount)
+	if err := binary.Read(r, binary.BigEndian, &entry.AccessFlags); err != nil {
+		return entry, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &entry.NameIndex); err != nil {
+		return entry, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &entry.DescriptorIndex); err != nil {
+		return entry, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &entry.AttributesCount); err != nil {
+		return entry, err
+	}
 
 	if int(entry.NameIndex) > len(h.ConstantPoolTable) {
 		return entry, fmt.Errorf("invalid name index %d > %d", int(entry.NameIndex), len(h.ConstantPoolTable))
 	}
 
-	//fmt.Printf("Method: AccessFlags = %d, NameIndex = %d, Name = %s, DescriptorIndex = %d, DescriptorName = %s, AttributesCount = %d\n", entry.AccessFlags, entry.NameIndex, getFieldName(entry.NameIndex, h), entry.DescriptorIndex, getFieldName(entry.DescriptorIndex, h), entry.AttributesCount)
 	entry.AttributeInfo = make([]interface{}, entry.AttributesCount)
 	for i := 0; i < int(entry.AttributesCount); i++ {
 		entry.AttributeInfo[i], err = parseAttributeTableEntry(r, h)
@@ -37,6 +46,5 @@ func parseMethodTableEntry(r io.Reader, h *classHeader) (entry methodEntry, err 
 			return methodEntry{}, err
 		}
 	}
-	//fmt.Printf("----\n\n")
 	return entry, nil
 }

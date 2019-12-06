@@ -28,12 +28,6 @@ func parseCodeAttribute(info []byte, h *classHeader) (ca CodeAttribute) {
 	binary.Read(infoReader, binary.BigEndian, &ca.MaxLocals)
 	binary.Read(infoReader, binary.BigEndian, &ca.CodeLength)
 
-	// fmt.Printf("Attribute Name: %s\n", getFieldName(ca.AttributeNameIndex, h))
-
-	//fmt.Printf("MaxStack: %d\n", ca.MaxStack)
-	//fmt.Printf("MaxLocals: %d\n", ca.MaxLocals)
-	//fmt.Printf("code length: %d\n", ca.CodeLength)
-
 	ca.Code = make([]byte, ca.CodeLength)
 	binary.Read(infoReader, binary.BigEndian, &ca.Code)
 
