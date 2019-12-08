@@ -1,9 +1,11 @@
 package intrinsics
 
-import "java-hackery/pkg/classloader"
+import (
+	"java-hackery/pkg/jvm"
+)
 
-func Classes() []classloader.JavaClass {
-	return []classloader.JavaClass{
+func Classes() []jvm.Class {
+	return []jvm.Class{
 		{Name: "java/lang/Object", Superclass: ""},
 		{Name: "java/lang/String", Superclass: "java/lang/Object"},
 	}

@@ -4,8 +4,12 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/binary"
+	"fmt"
+	"java-hackery/pkg/jvm"
 	"log"
 	"os"
+	"path"
+	"path/filepath"
 )
 
 func readClassFile(filename string) ([]byte, error) {
@@ -30,35 +34,24 @@ func readClassFile(filename string) ([]byte, error) {
 	return fileBytes, err
 }
 
-func getClassName(index uint16, h *classHeader) string {
-	constClass := h.ConstantPoolTable[index-1].(constantClassEntry)
-	name := h.ConstantPoolTable[constClass.NameIndex-1].(constantUTF8InfoEntry)
-	return string(name.Bytes)
-}
+//func getClassName(index uint16, f *ClassFile) string {
+//	constClass := f.ConstantPoolTable[index-1].(constantClassEntry)
+//	name := f.ConstantPoolTable[constClass.NameIndex-1].(constantUTF8InfoEntry)
+//	return string(name.Bytes)
+//}
 
-type JavaClass struct {
-	Name         string
-	Superclass   string
-	Header       *classHeader
-	Methods      map[string]methodEntry
-	ConstantPool []constantPoolEntry
-}
-
-func createMethodMap(methods []methodEntry, h *classHeader) map[string]methodEntry {
-	methodMap := make(map[string]methodEntry)
-	for _, method := range methods {
-		methodMap[getFieldName(method.NameIndex, h)] = method
-	}
-	return methodMap
-}
-
-func parseHeader(classBytes []byte) (class *JavaClass, err error) {
-	var header classHeader
+func parseHeader(classBytes []byte) (class *jvm.Class, err error) {
+	var header ClassFile
 	classReader := bytes.NewReader(classBytes)
+	class = jvm.NewClass()
 
 	if err := binary.Read(classReader, binary.BigEndian, &header.Magic); err != nil {
 		return nil, err
 	}
+	if header.Magic != classFileMagic {
+		return nil, fmt.Errorf("invalid magic header, expected = %x, found = %x", classFileMagic, header.Magic)
+	}
+
 	if err := binary.Read(classReader, binary.BigEndian, &header.MinorVersion); err != nil {
 		return nil, err
 	}
@@ -67,7 +60,7 @@ func parseHeader(classBytes []byte) (class *JavaClass, err error) {
 	}
 
 	// Read the ConstantPoolTable
-	if err := parseConstantPool(classReader, &header); err != nil {
+	if err := parseConstantPool(classReader, &header, class); err != nil {
 		return nil, err
 	}
 
@@ -82,36 +75,36 @@ func parseHeader(classBytes []byte) (class *JavaClass, err error) {
 	}
 
 	// Read the InterfaceTable
-	if err := parseInterfaceTable(classReader, &header); err != nil {
+	if err := parseInterfaceTable(classReader, &header, class); err != nil {
 		return nil, err
 	}
 
 	// Read the FieldTable
-	if err := parseFieldTable(classReader, &header); err != nil {
+	if err := parseFieldTable(classReader, &header, class); err != nil {
 		return nil, err
 	}
 
 	// Read the MethodTable
-	if err := parseMethodTable(classReader, &header); err != nil {
+	if err := parseMethodTable(classReader, &header, class); err != nil {
 		return nil, err
 	}
 
 	// Read the AttributeTable
-	if err := parseAttributeTable(classReader, &header); err != nil {
+	if err := parseAttributeTable(classReader, &header, class); err != nil {
 		return nil, err
 	}
 
-	class = &JavaClass{
-		Name:         getClassName(header.ClassConstantPoolIndex, &header),
-		Superclass:   getClassName(header.SuperclassConstantPoolIndex, &header),
-		Header:       &header,
-		ConstantPool: header.ConstantPoolTable,
-		Methods:      createMethodMap(header.MethodTable, &header)}
+	if class.Name, err = class.GetClassNameConstant(header.ClassConstantPoolIndex); err != nil {
+		return nil, err
+	}
+	if class.Superclass, err = class.GetClassNameConstant(header.SuperclassConstantPoolIndex); err != nil {
+		return nil, err
+	}
+
 	return class, nil
 }
 
-
-func LoadFromFile(filename string) (*JavaClass, error) {
+func loadFromFile(filename string) (*jvm.Class, error) {
 	classBytes, err := readClassFile(filename)
 	if err != nil {
 		log.Fatal("Could not read class file: ", err)
@@ -123,4 +116,23 @@ func LoadFromFile(filename string) (*JavaClass, error) {
 	}
 
 	return class, nil
+}
+
+func LoadFromClasspath(dir string, metaspace *jvm.Metaspace) error {
+	files, err := filepath.Glob(path.Join(dir, "*.class"))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		class, err := loadFromFile(file)
+		if err != nil {
+			return err
+		}
+		if err := metaspace.LoadFromStruct(class); err != nil {
+			return fmt.Errorf("failed to load class %s: %v", class.Name, err)
+		}
+	}
+
+	return nil
 }

@@ -4,47 +4,52 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
+	"java-hackery/pkg/jvm"
 )
 
-func parseMethodTable(r io.Reader, h *classHeader) (err error) {
+func parseMethodTable(r io.Reader, h *ClassFile, c *jvm.Class) (err error) {
 	if err := binary.Read(r, binary.BigEndian, &h.MethodCount); err != nil {
 		return err
 	}
-
-	h.MethodTable = make([]methodEntry, h.MethodCount)
 	for i := 0; i < int(h.MethodCount); i++ {
-		h.MethodTable[i], err = parseMethodTableEntry(r, h)
+		method, err := parseMethodTableEntry(r, h, c)
 		if err != nil {
 			return err
 		}
+		c.AddMethod(method)
 	}
 	return nil
 }
 
-func parseMethodTableEntry(r io.Reader, h *classHeader) (entry methodEntry, err error) {
-	if err := binary.Read(r, binary.BigEndian, &entry.AccessFlags); err != nil {
-		return entry, err
+func parseMethodTableEntry(r io.Reader, h *ClassFile, c *jvm.Class) (method *jvm.Method, err error) {
+	method = &jvm.Method{}
+	if err := binary.Read(r, binary.BigEndian, &method.AccessFlags); err != nil {
+		return method, err
 	}
-	if err := binary.Read(r, binary.BigEndian, &entry.NameIndex); err != nil {
-		return entry, err
+	if err := binary.Read(r, binary.BigEndian, &method.NameIndex); err != nil {
+		return method, err
 	}
-	if err := binary.Read(r, binary.BigEndian, &entry.DescriptorIndex); err != nil {
-		return entry, err
+	if err := binary.Read(r, binary.BigEndian, &method.DescriptorIndex); err != nil {
+		return method, err
 	}
-	if err := binary.Read(r, binary.BigEndian, &entry.AttributesCount); err != nil {
-		return entry, err
-	}
-
-	if int(entry.NameIndex) > len(h.ConstantPoolTable) {
-		return entry, fmt.Errorf("invalid name index %d > %d", int(entry.NameIndex), len(h.ConstantPoolTable))
+	if err := binary.Read(r, binary.BigEndian, &method.AttributesCount); err != nil {
+		return method, err
 	}
 
-	entry.AttributeInfo = make([]interface{}, entry.AttributesCount)
-	for i := 0; i < int(entry.AttributesCount); i++ {
-		entry.AttributeInfo[i], err = parseAttributeTableEntry(r, h)
+	if int(method.NameIndex) > len(c.Constants) {
+		return method, fmt.Errorf("invalid name index %d > %d", int(method.NameIndex), len(c.Constants))
+	}
+	if method.Name, err = c.GetUTF8Constant(method.NameIndex); err != nil {
+		return nil, err
+	}
+
+	method.Attributes = make([]*jvm.Attribute, method.AttributesCount)
+	for i := 0; i < int(method.AttributesCount); i++ {
+		 method.Attributes[i], err = parseAttributeTableEntry(r, h, c)
 		if err != nil {
-			return methodEntry{}, err
+			return nil, err
 		}
 	}
-	return entry, nil
+
+	return method, nil
 }

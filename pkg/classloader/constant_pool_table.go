@@ -4,128 +4,185 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
+	"java-hackery/pkg/jvm"
 )
 
-func parseConstantFieldMethodInterfaceRef(r io.Reader) constantFieldMethodInterfaceRefEntry {
-	var classIndex, nameAndTypeIndex uint16
-	binary.Read(r, binary.BigEndian, &classIndex)
-	binary.Read(r, binary.BigEndian, &nameAndTypeIndex)
-	return constantFieldMethodInterfaceRefEntry{
-		Tag:              constantMethodref,
-		ClassIndex:       classIndex,
-		NameAndTypeIndex: nameAndTypeIndex}
+func parseConstantFieldref(r io.Reader) (*jvm.Constant, error) {
+	fieldref := jvm.ConstantFieldref{}
+	if err := binary.Read(r, binary.BigEndian, &fieldref.ClassIndex); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &fieldref.NameAndTypeIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: fieldref,
+		Type:  fieldref.GetType()}, nil
 }
 
-func parseConstantClass(r io.Reader) constantClassEntry {
-	var nameIndex uint16
-	binary.Read(r, binary.BigEndian, &nameIndex)
-	return constantClassEntry{
-		Tag:       constantClass,
-		NameIndex: nameIndex}
+func parseConstantMethodref(r io.Reader) (*jvm.Constant, error) {
+	methodref := jvm.ConstantMethodref{}
+	if err := binary.Read(r, binary.BigEndian, &methodref.ClassIndex); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &methodref.NameAndTypeIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: methodref,
+		Type:  methodref.GetType()}, nil
 }
 
-func parseConstantString(r io.Reader) constantStringEntry {
-	var stringIndex uint16
-	binary.Read(r, binary.BigEndian, &stringIndex)
-	return constantStringEntry{
-		Tag:         constantClass,
-		StringIndex: stringIndex}
+func parseConstantInterfaceMethodref(r io.Reader) (*jvm.Constant, error) {
+	interfaceMethodref := jvm.ConstantInterfaceMethodref{}
+	if err := binary.Read(r, binary.BigEndian, &interfaceMethodref.ClassIndex); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &interfaceMethodref.NameAndTypeIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: interfaceMethodref,
+		Type:  interfaceMethodref.GetType()}, nil
 }
 
-func parseConstantInteger(r io.Reader) ConstantIntegerEntry {
-	var bytes uint32
-	binary.Read(r, binary.BigEndian, &bytes)
-	return ConstantIntegerEntry{
-		Tag:   constantClass,
-		Bytes: bytes}
+func parseConstantClass(r io.Reader) (*jvm.Constant, error) {
+	class := jvm.ConstantClass{}
+	if err := binary.Read(r, binary.BigEndian, &class.NameIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: class,
+		Type:  class.GetType()}, nil
 }
 
-func parseConstantFloat(r io.Reader) constantFloatEntry {
-	var bytes uint32
-	binary.Read(r, binary.BigEndian, &bytes)
-	return constantFloatEntry{
-		Tag:   constantClass,
-		Bytes: bytes}
+func parseConstantString(r io.Reader) (*jvm.Constant, error) {
+	constantString := jvm.ConstantString{}
+	if err := binary.Read(r, binary.BigEndian, &constantString.StringIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: constantString,
+		Type:  constantString.GetType()}, nil
 }
 
-func parseConstantLong(r io.Reader) constantLongEntry {
-	var highBytes, lowBytes uint32
-	binary.Read(r, binary.BigEndian, &highBytes)
-	binary.Read(r, binary.BigEndian, &lowBytes)
-	return constantLongEntry{
-		Tag:       constantClass,
-		HighBytes: highBytes,
-		LowBytes:  lowBytes}
+func parseConstantInteger(r io.Reader) (*jvm.Constant, error) {
+	constantInteger := jvm.ConstantInteger{}
+	if err := binary.Read(r, binary.BigEndian, &constantInteger.Bytes); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: constantInteger,
+		Type:  constantInteger.GetType()}, nil
 }
 
-func parseConstantDouble(r io.Reader) constantDoubleEntry {
-	var highBytes, lowBytes uint32
-	binary.Read(r, binary.BigEndian, &highBytes)
-	binary.Read(r, binary.BigEndian, &lowBytes)
-	return constantDoubleEntry{
-		Tag:       constantClass,
-		HighBytes: highBytes,
-		LowBytes:  lowBytes}
+func parseConstantFloat(r io.Reader) (*jvm.Constant, error) {
+	constantFloat := jvm.ConstantFloat{}
+	if err := binary.Read(r, binary.BigEndian, &constantFloat.Bytes); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: constantFloat,
+		Type:  constantFloat.GetType()}, nil
 }
 
-func parseConstantNameAndTypeInfo(r io.Reader) constantNameAndTypeInfoEntry {
-	var nameIndex, descriptorIndex uint16
-	binary.Read(r, binary.BigEndian, &nameIndex)
-	binary.Read(r, binary.BigEndian, &descriptorIndex)
-	return constantNameAndTypeInfoEntry{
-		Tag:             constantNameAndType,
-		NameIndex:       nameIndex,
-		DescriptorIndex: descriptorIndex}
+func parseConstantLong(r io.Reader) (*jvm.Constant, error) {
+	constantLong := jvm.ConstantLong{}
+	if err := binary.Read(r, binary.BigEndian, &constantLong.HighBytes); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &constantLong.LowBytes); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: constantLong,
+		Type:  constantLong.GetType()}, nil
 }
 
-func parseConstantUTF8Info(r io.Reader) constantUTF8InfoEntry {
+func parseConstantDouble(r io.Reader) (*jvm.Constant, error) {
+	constantDouble := jvm.ConstantDouble{}
+	if err := binary.Read(r, binary.BigEndian, &constantDouble.HighBytes); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &constantDouble.LowBytes); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: constantDouble,
+		Type:  constantDouble.GetType()}, nil
+}
+
+func parseConstantNameAndTypeInfo(r io.Reader) (*jvm.Constant, error) {
+	nameAndType := jvm.ConstantNameAndType{}
+	if err := binary.Read(r, binary.BigEndian, &nameAndType.NameIndex); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &nameAndType.DescriptorIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: nameAndType,
+		Type:  nameAndType.GetType()}, nil
+}
+
+func parseConstantUTF8Info(r io.Reader) (*jvm.Constant, error) {
+	utf8string := jvm.ConstantUtf8{}
 	var length uint16
-	binary.Read(r, binary.BigEndian, &length)
-	bytes := make([]byte, length)
-	binary.Read(r, binary.BigEndian, &bytes)
-	return constantUTF8InfoEntry{
-		Tag:    constantUtf8,
-		Length: length,
-		Bytes:  bytes}
-}
-
-func parseConstantMethodHandle(r io.Reader) constantMethodHandleInfoEntry {
-	var referenceKind uint8
-	var referenceIndex uint16
-	binary.Read(r, binary.BigEndian, &referenceKind)
-	binary.Read(r, binary.BigEndian, &referenceIndex)
-	return constantMethodHandleInfoEntry{
-		Tag:            constantMethodHandle,
-		ReferenceKind:  referenceKind,
-		ReferenceIndex: referenceIndex}
-}
-
-func parseConstantMethodType(r io.Reader) constantMethodTypeInfoEntry {
-	var descriptorIndex uint16
-	binary.Read(r, binary.BigEndian, &descriptorIndex)
-	return constantMethodTypeInfoEntry{
-		Tag:             constantMethodType,
-		DescriptorIndex: descriptorIndex,
+	if err := binary.Read(r, binary.BigEndian, &length); err != nil {
+		return nil, err
 	}
-}
-
-func parseConstantInvokeDynamic(r io.Reader) constantInvokeDynamicInfoEntry {
-	var bootstrapMethodAttrIndex, nameAndTypeIndex uint16
-	binary.Read(r, binary.BigEndian, &bootstrapMethodAttrIndex)
-	binary.Read(r, binary.BigEndian, &nameAndTypeIndex)
-	return constantInvokeDynamicInfoEntry{
-		Tag:                      constantInvokeDynamic,
-		BootstrapMethodAttrIndex: bootstrapMethodAttrIndex,
-		NameAndTypeIndex:         nameAndTypeIndex,
+	utf8string.Bytes = make([]byte, length)
+	if err := binary.Read(r, binary.BigEndian, &utf8string.Bytes); err != nil {
+		return nil, err
 	}
+	return &jvm.Constant{
+		Value: utf8string,
+		Type:  utf8string.GetType()}, nil
 }
 
-func parseConstantPool(r io.Reader, h *classHeader) (err error) {
-	binary.Read(r, binary.BigEndian, &h.ConstantPoolCount)
-	// fmt.Printf("Loading %d constant pool table entries\n", h.ConstantPoolCount)
-	h.ConstantPoolTable = make([]constantPoolEntry, h.ConstantPoolCount)
-	for i := 0; i < int(h.ConstantPoolCount-1); i++ {
-		h.ConstantPoolTable[i], err = parseConstantPoolEntry(r)
+func parseConstantMethodHandle(r io.Reader) (*jvm.Constant, error) {
+	methodHandle := jvm.ConstantMethodHandle{}
+	if err := binary.Read(r, binary.BigEndian, &methodHandle.ReferenceKind); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &methodHandle.ReferenceIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: methodHandle,
+		Type:  methodHandle.GetType()}, nil
+}
+
+func parseConstantMethodType(r io.Reader) (*jvm.Constant, error) {
+	methodType := jvm.ConstantMethodType{}
+	if err := binary.Read(r, binary.BigEndian, &methodType.DescriptorIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: methodType,
+		Type:  methodType.GetType()}, nil
+}
+
+func parseConstantInvokeDynamic(r io.Reader) (*jvm.Constant, error) {
+	invokeDynamic := jvm.ConstantInvokeDynamic{}
+	if err := binary.Read(r, binary.BigEndian, &invokeDynamic.BootstrapMethodAttrIndex); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &invokeDynamic.NameAndTypeIndex); err != nil {
+		return nil, err
+	}
+	return &jvm.Constant{
+		Value: invokeDynamic,
+		Type:  invokeDynamic.GetType()}, nil
+}
+
+func parseConstantPool(r io.Reader, f *ClassFile, c *jvm.Class) (err error) {
+	if err := binary.Read(r, binary.BigEndian, &f.ConstantPoolCount); err != nil {
+		return err
+	}
+	for i := 0; i < int(f.ConstantPoolCount-1); i++ {
+		entry, err := parseConstantPoolEntry(r)
+		c.AddConstant(entry)
 		if err != nil {
 			return fmt.Errorf("loading pool entry %d: %v", i, err)
 		}
@@ -133,41 +190,41 @@ func parseConstantPool(r io.Reader, h *classHeader) (err error) {
 	return nil
 }
 
-func parseConstantPoolEntry(r io.Reader) (constantPoolEntry, error) {
+func parseConstantPoolEntry(r io.Reader) (*jvm.Constant, error) {
 	var tag uint8
-	binary.Read(r, binary.BigEndian, &tag)
+	if err := binary.Read(r, binary.BigEndian, &tag); err != nil {
+		return nil, err
+	}
 
 	switch tag {
 	case constantClass:
-		return parseConstantClass(r), nil
+		return parseConstantClass(r)
 	case constantFieldref:
-		return parseConstantFieldMethodInterfaceRef(r), nil
+		return parseConstantFieldref(r)
 	case constantMethodref:
-		return parseConstantFieldMethodInterfaceRef(r), nil
+		return parseConstantMethodref(r)
 	case constantInterfaceMethodref:
-		return parseConstantFieldMethodInterfaceRef(r), nil
+		return parseConstantInterfaceMethodref(r)
 	case constantString:
-		return parseConstantString(r), nil
+		return parseConstantString(r)
 	case constantInteger:
-		return parseConstantInteger(r), nil
+		return parseConstantInteger(r)
 	case constantFloat:
-		return parseConstantFloat(r), nil
+		return parseConstantFloat(r)
 	case constantLong:
-		return parseConstantLong(r), nil
+		return parseConstantLong(r)
 	case constantDouble:
-		return parseConstantDouble(r), nil
+		return parseConstantDouble(r)
 	case constantNameAndType:
-		return parseConstantNameAndTypeInfo(r), nil
+		return parseConstantNameAndTypeInfo(r)
 	case constantUtf8:
-		return parseConstantUTF8Info(r), nil
+		return parseConstantUTF8Info(r)
 	case constantMethodHandle:
-		return parseConstantMethodHandle(r), nil
+		return parseConstantMethodHandle(r)
 	case constantMethodType:
-		return parseConstantMethodType(r), nil
+		return parseConstantMethodType(r)
 	case constantInvokeDynamic:
-		foo := parseConstantInvokeDynamic(r)
-		return foo, nil
-		//return parseConstantInvokeDynamic(r), nil
+		return parseConstantInvokeDynamic(r)
 	}
 
 	return nil, fmt.Errorf("could not parse constant pool entry with tag %d", tag)

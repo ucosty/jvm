@@ -5,57 +5,78 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
+	"java-hackery/pkg/jvm"
 )
 
-func parseAttributeTable(r io.Reader, h *classHeader) (err error) {
-	binary.Read(r, binary.BigEndian, &h.AttributeCount)
-	// fmt.Printf("Loading %d attribute table entries\n", h.AttributeCount)
-	h.AttributeTable = make([]interface{}, h.AttributeCount)
+func parseAttributeTable(r io.Reader, h *ClassFile, c *jvm.Class) (err error) {
+	if err = binary.Read(r, binary.BigEndian, &h.AttributeCount); err != nil {
+		return err
+	}
 	for i := 0; i < int(h.AttributeCount); i++ {
-		h.AttributeTable[i], err = parseAttributeTableEntry(r, h)
+		attribute, err := parseAttributeTableEntry(r, h, c)
 		if err != nil {
 			return err
 		}
+		c.AddAttribute(attribute)
 	}
 	return nil
 }
 
-func parseCodeAttribute(info []byte, h *classHeader) (ca CodeAttribute) {
-
+func parseCodeAttribute(info []byte, h *ClassFile) (attribute *jvm.Attribute, err error) {
+	codeAttribute := &jvm.CodeAttribute{}
 	infoReader := bytes.NewReader(info)
+	if err := binary.Read(infoReader, binary.BigEndian, &codeAttribute.MaxStack); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(infoReader, binary.BigEndian, &codeAttribute.MaxLocals); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(infoReader, binary.BigEndian, &codeAttribute.CodeLength); err != nil {
+		return nil, err
+	}
 
-	binary.Read(infoReader, binary.BigEndian, &ca.MaxStack)
-	binary.Read(infoReader, binary.BigEndian, &ca.MaxLocals)
-	binary.Read(infoReader, binary.BigEndian, &ca.CodeLength)
+	codeAttribute.Code = make([]byte, codeAttribute.CodeLength)
+	if err := binary.Read(infoReader, binary.BigEndian, &codeAttribute.Code); err != nil {
+		return nil, err
+	}
 
-	ca.Code = make([]byte, ca.CodeLength)
-	binary.Read(infoReader, binary.BigEndian, &ca.Code)
-
-	//fmt.Printf("code:\n%s", hex.Dump(ca.Code))
-
-	// binary.Read(methodReader, binary.BigEndian, &ca.ExceptionTableLength)
+	if err := binary.Read(infoReader, binary.BigEndian, &codeAttribute.ExceptionTableLength); err != nil {
+		return nil, err
+	}
 	// binary.Read(methodReader, binary.BigEndian, &code.ExceptionTable)
 
-	// binary.Read(methodReader, binary.BigEndian, &ca.AttributesCount)
-	// binary.Read(methodReader, binary.BigEndian, &code.AttributeInfo)
+	//if err := binary.Read(infoReader, binary.BigEndian, &codeAttribute.AttributesCount); err != nil {
+	//	return nil, err
+	//}
+	// binary.Read(methodReader, binary.BigEndian, &code.Attributes)
 
-	return ca
+	return &jvm.Attribute{
+		Type:  codeAttribute.GetType(),
+		Value: codeAttribute,
+	}, nil
 }
 
-func parseAttributeTableEntry(r io.Reader, h *classHeader) (interface{}, error) {
+func parseAttributeTableEntry(r io.Reader, h *ClassFile, c *jvm.Class) (*jvm.Attribute, error) {
 	var entry attributeEntry
-	binary.Read(r, binary.BigEndian, &entry.AttributeNameIndex)
-	binary.Read(r, binary.BigEndian, &entry.AttributeLength)
+	if err := binary.Read(r, binary.BigEndian, &entry.AttributeNameIndex); err != nil {
+		return nil, err
+	}
+	if err := binary.Read(r, binary.BigEndian, &entry.AttributeLength); err != nil {
+		return nil, err
+	}
 	entry.Info = make([]uint8, entry.AttributeLength)
-	binary.Read(r, binary.BigEndian, &entry.Info)
+	if err := binary.Read(r, binary.BigEndian, &entry.Info); err != nil {
+		return nil, err
+	}
 
-	//fmt.Printf("Attribute: AttributeNameIndex = %d, AttributeName = %s, AttributeLength = %d\n", entry.AttributeNameIndex, getFieldName(entry.AttributeNameIndex, h), entry.AttributeLength)
-
-	attributeName := getFieldName(entry.AttributeNameIndex, h)
+	attributeName, err := c.GetUTF8Constant(entry.AttributeNameIndex)
+	if err != nil {
+		return nil, err
+	}
 
 	switch attributeName {
 	case "Code":
-		return parseCodeAttribute(entry.Info, h), nil
+		return parseCodeAttribute(entry.Info, h)
 	case "SourceFile":
 		return nil, nil
 	case "InnerClasses":
@@ -64,6 +85,6 @@ func parseAttributeTableEntry(r io.Reader, h *classHeader) (interface{}, error) 
 		return nil, nil
 
 	default:
-		return nil, fmt.Errorf("Could not parse attribute %s", attributeName)
+		return nil, fmt.Errorf("could not parse attribute %s", attributeName)
 	}
 }

@@ -4,52 +4,51 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
+	"java-hackery/pkg/jvm"
 )
 
-func parseFieldTable(r io.Reader, h *classHeader) (err error) {
+func parseFieldTable(r io.Reader, h *ClassFile, c *jvm.Class) (err error) {
 	if err := binary.Read(r, binary.BigEndian, &h.FieldCount); err != nil {
 		return err
 	}
 
-	h.FieldTable = make([]fieldEntry, h.FieldCount)
 	for i := 0; i < int(h.FieldCount); i++ {
-		h.FieldTable[i], err = parseFieldTableEntry(r, h)
+		field, err := parseFieldTableEntry(r, h, c)
 		if err != nil {
 			return err
 		}
+		c.AddField(field)
 	}
 	return nil
 }
 
-func getFieldName(index uint16, h *classHeader) string {
-	return string(h.ConstantPoolTable[index-1].(constantUTF8InfoEntry).Bytes)
-}
+func parseFieldTableEntry(r io.Reader, h *ClassFile, c *jvm.Class) (field *jvm.Field, err error) {
+	field = &jvm.Field{}
 
-func parseFieldTableEntry(r io.Reader, h *classHeader) (entry fieldEntry, err error) {
-	if err := binary.Read(r, binary.BigEndian, &entry.AccessFlags); err != nil {
-		return entry, err
+	if err := binary.Read(r, binary.BigEndian, &field.AccessFlags); err != nil {
+		return nil, err
 	}
-	if err := binary.Read(r, binary.BigEndian, &entry.NameIndex); err != nil {
-		return entry, err
+	if err := binary.Read(r, binary.BigEndian, &field.NameIndex); err != nil {
+		return nil, err
 	}
-	if err := binary.Read(r, binary.BigEndian, &entry.DescriptorIndex); err != nil {
-		return entry, err
+	if err := binary.Read(r, binary.BigEndian, &field.DescriptorIndex); err != nil {
+		return nil, err
 	}
-	if err := binary.Read(r, binary.BigEndian, &entry.AttributesCount); err != nil {
-		return entry, err
+	if err := binary.Read(r, binary.BigEndian, &field.AttributesCount); err != nil {
+		return nil, err
 	}
 
-	if int(entry.NameIndex) > len(h.ConstantPoolTable) {
-		return entry, fmt.Errorf("invalid name index %d > %d", int(entry.NameIndex), len(h.ConstantPoolTable))
+	if int(field.NameIndex) > len(c.Constants) {
+		return nil, fmt.Errorf("invalid name index %d > %d", int(field.NameIndex), len(c.Constants))
 	}
 
-	entry.AttributeInfo = make([]interface{}, entry.AttributesCount)
-	for i := 0; i < int(entry.AttributesCount); i++ {
-		entry.AttributeInfo[i], err = parseAttributeTableEntry(r, h)
+	field.Attributes = make([]*jvm.Attribute, field.AttributesCount)
+	for i := 0; i < int(field.AttributesCount); i++ {
+		field.Attributes[i], err = parseAttributeTableEntry(r, h, c)
 		if err != nil {
-			return fieldEntry{}, err
+			return nil, err
 		}
 	}
 
-	return entry, nil
+	return field, nil
 }
