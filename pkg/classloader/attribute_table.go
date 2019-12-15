@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
-	"java-hackery/pkg/jvm"
+	"github.com/ucosty/jvm/pkg/jvm"
 )
 
 func parseAttributeTable(r io.Reader, h *ClassFile, c *jvm.Class) (err error) {

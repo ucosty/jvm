@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"java-hackery/pkg/jvm"
+	"github.com/ucosty/jvm/pkg/jvm"
 	"log"
 	"os"
 	"path"

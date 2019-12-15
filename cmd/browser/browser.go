@@ -1,15 +1,19 @@
 package main
 
 import (
-	"fmt"
 	"github.com/ucosty/jvm/pkg/classloader"
 	"github.com/ucosty/jvm/pkg/intrinsics"
 	"github.com/ucosty/jvm/pkg/jvm"
 	"log"
+	"net/http"
 	"os"
-	"strings"
 )
 
+func hello(w http.ResponseWriter, req *http.Request) {
+
+}
+
+// Java classpath browser
 func main() {
 	metaspace := jvm.NewMetaspace()
 
@@ -25,19 +29,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	metaspace.DumpHeap()
 
-	fmt.Printf("Main Class: %s\n", os.Args[2])
-	mainClassName := strings.Replace(os.Args[2], ".", "/", -1)
+	//http.ha
 
-	class, err := metaspace.GetClass(mainClassName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := class.Invoke("<clinit>"); err != nil {
-		log.Fatal(err)
-	}
-	if err := class.Invoke("main"); err != nil {
-		log.Fatal(err)
-	}
+	http.HandleFunc("/", hello)
+	http.ListenAndServe(":8080", nil)
 }

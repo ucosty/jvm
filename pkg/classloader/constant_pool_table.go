@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
-	"java-hackery/pkg/jvm"
+	"github.com/ucosty/jvm/pkg/jvm"
 )
 
 func parseConstantFieldref(r io.Reader) (*jvm.Constant, error) {

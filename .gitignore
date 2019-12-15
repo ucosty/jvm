@@ -1,5 +1,5 @@
 java
-opcodes-list
+data/opcodes-list
 *.class
 .DS_Store
 .idea

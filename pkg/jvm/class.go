@@ -57,6 +57,23 @@ func (c *Class) GetClassNameConstant(index uint16) (string, error) {
 	return c.GetUTF8Constant(constantClass.NameIndex)
 }
 
+
+func (c *Class) GetNameAndType(index uint16) (name string, descriptor string, err error) {
+	if c.Constants[index].Type != "CONSTANT_NameAndType" {
+		return "", "", fmt.Errorf("expected type CONSTANT_NameAndType, found %s", c.Constants[index].Type)
+	}
+
+	nameAndType := c.Constants[index].Value.(ConstantNameAndType)
+	if name, err = c.GetUTF8Constant(nameAndType.NameIndex); err != nil {
+		return "", "", err
+	}
+	if descriptor, err = c.GetUTF8Constant(nameAndType.DescriptorIndex); err != nil {
+		return "", "", err
+	}
+	return name, descriptor, nil
+}
+
+
 func (c *Class) AddMethod(method *Method) {
 	fmt.Printf("Adding method %s\n", method.Name)
 	c.Methods[method.Name] = method
