@@ -56,9 +56,7 @@ func (m *Metaspace) loadConstants(c *Class) error {
 
 		switch constant.Type {
 		case "CONSTANT_String":
-
 			constString := constant.Value.(ConstantString)
-
 			utf8value, err := c.GetUTF8Constant(constString.StringIndex)
 			if err != nil {
 				return err

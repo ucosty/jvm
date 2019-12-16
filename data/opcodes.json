@@ -3,1648 +3,1648 @@
     "Mnemonic": "aaload",
     "Hex": "32",
     "Binary": "0011 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load onto the stack a reference from an array"
   },
   {
     "Mnemonic": "aastore",
     "Hex": "53",
     "Binary": "0101 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store a reference in an array"
   },
   {
     "Mnemonic": "aconst_null",
     "Hex": "01",
     "Binary": "0000 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ null",
+    "otherBytes": "",
+    "stack": "→ null",
     "Description": "push a null reference onto the stack"
   },
   {
     "Mnemonic": "aload",
     "Hex": "19",
     "Binary": "0001 1001",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "→ objectref",
+    "otherBytes": "1: index",
+    "stack": "→ objectref",
     "Description": "load a reference onto the stack from a local variable #index"
   },
   {
     "Mnemonic": "aload_0",
     "Hex": "2a",
     "Binary": "0010 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ objectref",
+    "otherBytes": "",
+    "stack": "→ objectref",
     "Description": "load a reference onto the stack from local variable 0"
   },
   {
     "Mnemonic": "aload_1",
     "Hex": "2b",
     "Binary": "0010 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ objectref",
+    "otherBytes": "",
+    "stack": "→ objectref",
     "Description": "load a reference onto the stack from local variable 1"
   },
   {
     "Mnemonic": "aload_2",
     "Hex": "2c",
     "Binary": "0010 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ objectref",
+    "otherBytes": "",
+    "stack": "→ objectref",
     "Description": "load a reference onto the stack from local variable 2"
   },
   {
     "Mnemonic": "aload_3",
     "Hex": "2d",
     "Binary": "0010 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ objectref",
+    "otherBytes": "",
+    "stack": "→ objectref",
     "Description": "load a reference onto the stack from local variable 3"
   },
   {
     "Mnemonic": "anewarray",
     "Hex": "bd",
     "Binary": "1011 1101",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "count → arrayref",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "count → arrayref",
     "Description": "create a new array of references of length count and component type identified by the class reference index (<yyyyy data-mw-deduplicate=\"TemplateStyles:r886049734\">.mw-parser-output .monospaced{font-family:monospace,monospace}indexbyte1 << 8 + indexbyte2) in the constant pool"
   },
   {
     "Mnemonic": "areturn",
     "Hex": "b0",
     "Binary": "1011 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref → [empty]",
+    "otherBytes": "",
+    "stack": "objectref → [empty]",
     "Description": "return a reference from a method"
   },
   {
     "Mnemonic": "arraylength",
     "Hex": "be",
     "Binary": "1011 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref → length",
+    "otherBytes": "",
+    "stack": "arrayref → length",
     "Description": "get the length of an array"
   },
   {
     "Mnemonic": "astore",
     "Hex": "3a",
     "Binary": "0011 1010",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "objectref →",
+    "otherBytes": "1: index",
+    "stack": "objectref →",
     "Description": "store a reference into a local variable #index"
   },
   {
     "Mnemonic": "astore_0",
     "Hex": "4b",
     "Binary": "0100 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref →",
+    "otherBytes": "",
+    "stack": "objectref →",
     "Description": "store a reference into local variable 0"
   },
   {
     "Mnemonic": "astore_1",
     "Hex": "4c",
     "Binary": "0100 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref →",
+    "otherBytes": "",
+    "stack": "objectref →",
     "Description": "store a reference into local variable 1"
   },
   {
     "Mnemonic": "astore_2",
     "Hex": "4d",
     "Binary": "0100 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref →",
+    "otherBytes": "",
+    "stack": "objectref →",
     "Description": "store a reference into local variable 2"
   },
   {
     "Mnemonic": "astore_3",
     "Hex": "4e",
     "Binary": "0100 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref →",
+    "otherBytes": "",
+    "stack": "objectref →",
     "Description": "store a reference into local variable 3"
   },
   {
     "Mnemonic": "athrow",
     "Hex": "bf",
     "Binary": "1011 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref → [empty], objectref",
+    "otherBytes": "",
+    "stack": "objectref → [empty], objectref",
     "Description": "throws an error or exception (notice that the rest of the stack is cleared, leaving only a reference to the Throwable)"
   },
   {
     "Mnemonic": "baload",
     "Hex": "33",
     "Binary": "0011 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load a byte or Boolean value from an array"
   },
   {
     "Mnemonic": "bastore",
     "Hex": "54",
     "Binary": "0101 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store a byte or Boolean value into an array"
   },
   {
     "Mnemonic": "bipush",
     "Hex": "10",
     "Binary": "0001 0000",
-    "Other bytes\n[count]: [operand labels]": "1: byte",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "1: byte",
+    "stack": "→ value",
     "Description": "push a byte onto the stack as an integer value"
   },
   {
     "Mnemonic": "breakpoint",
     "Hex": "ca",
     "Binary": "1100 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "",
+    "otherBytes": "",
+    "stack": "",
     "Description": "reserved for breakpoints in Java debuggers; should not appear in any class file"
   },
   {
     "Mnemonic": "caload",
     "Hex": "34",
     "Binary": "0011 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load a char from an array"
   },
   {
     "Mnemonic": "castore",
     "Hex": "55",
     "Binary": "0101 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store a char into an array"
   },
   {
     "Mnemonic": "checkcast",
     "Hex": "c0",
     "Binary": "1100 0000",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "objectref → objectref",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "objectref → objectref",
     "Description": "checks whether an objectref is of a certain type, the class reference of which is in the constant pool at index (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "d2f",
     "Hex": "90",
     "Binary": "1001 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a double to a float"
   },
   {
     "Mnemonic": "d2i",
     "Hex": "8e",
     "Binary": "1000 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a double to an int"
   },
   {
     "Mnemonic": "d2l",
     "Hex": "8f",
     "Binary": "1000 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a double to a long"
   },
   {
     "Mnemonic": "dadd",
     "Hex": "63",
     "Binary": "0110 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "add two doubles"
   },
   {
     "Mnemonic": "daload",
     "Hex": "31",
     "Binary": "0011 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load a double from an array"
   },
   {
     "Mnemonic": "dastore",
     "Hex": "52",
     "Binary": "0101 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store a double into an array"
   },
   {
     "Mnemonic": "dcmpg",
     "Hex": "98",
     "Binary": "1001 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "compare two doubles"
   },
   {
     "Mnemonic": "dcmpl",
     "Hex": "97",
     "Binary": "1001 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "compare two doubles"
   },
   {
     "Mnemonic": "dconst_0",
     "Hex": "0e",
     "Binary": "0000 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 0.0",
+    "otherBytes": "",
+    "stack": "→ 0.0",
     "Description": "push the constant 0.0 (a double) onto the stack"
   },
   {
     "Mnemonic": "dconst_1",
     "Hex": "0f",
     "Binary": "0000 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 1.0",
+    "otherBytes": "",
+    "stack": "→ 1.0",
     "Description": "push the constant 1.0 (a double) onto the stack"
   },
   {
     "Mnemonic": "ddiv",
     "Hex": "6f",
     "Binary": "0110 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "divide two doubles"
   },
   {
     "Mnemonic": "dload",
     "Hex": "18",
     "Binary": "0001 1000",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "1: index",
+    "stack": "→ value",
     "Description": "load a double value from a local variable #index"
   },
   {
     "Mnemonic": "dload_0",
     "Hex": "26",
     "Binary": "0010 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a double from local variable 0"
   },
   {
     "Mnemonic": "dload_1",
     "Hex": "27",
     "Binary": "0010 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a double from local variable 1"
   },
   {
     "Mnemonic": "dload_2",
     "Hex": "28",
     "Binary": "0010 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a double from local variable 2"
   },
   {
     "Mnemonic": "dload_3",
     "Hex": "29",
     "Binary": "0010 1001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a double from local variable 3"
   },
   {
     "Mnemonic": "dmul",
     "Hex": "6b",
     "Binary": "0110 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "multiply two doubles"
   },
   {
     "Mnemonic": "dneg",
     "Hex": "77",
     "Binary": "0111 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "negate a double"
   },
   {
     "Mnemonic": "drem",
     "Hex": "73",
     "Binary": "0111 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "get the remainder from a division between two doubles"
   },
   {
     "Mnemonic": "dreturn",
     "Hex": "af",
     "Binary": "1010 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → [empty]",
+    "otherBytes": "",
+    "stack": "value → [empty]",
     "Description": "return a double from a method"
   },
   {
     "Mnemonic": "dstore",
     "Hex": "39",
     "Binary": "0011 1001",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "1: index",
+    "stack": "value →",
     "Description": "store a double value into a local variable #index"
   },
   {
     "Mnemonic": "dstore_0",
     "Hex": "47",
     "Binary": "0100 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a double into local variable 0"
   },
   {
     "Mnemonic": "dstore_1",
     "Hex": "48",
     "Binary": "0100 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a double into local variable 1"
   },
   {
     "Mnemonic": "dstore_2",
     "Hex": "49",
     "Binary": "0100 1001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a double into local variable 2"
   },
   {
     "Mnemonic": "dstore_3",
     "Hex": "4a",
     "Binary": "0100 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a double into local variable 3"
   },
   {
     "Mnemonic": "dsub",
     "Hex": "67",
     "Binary": "0110 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "subtract a double from another"
   },
   {
     "Mnemonic": "dup",
     "Hex": "59",
     "Binary": "0101 1001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → value, value",
+    "otherBytes": "",
+    "stack": "value → value, value",
     "Description": "duplicate the value on top of the stack"
   },
   {
     "Mnemonic": "dup_x1",
     "Hex": "5a",
     "Binary": "0101 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value2, value1 → value1, value2, value1",
+    "otherBytes": "",
+    "stack": "value2, value1 → value1, value2, value1",
     "Description": "insert a copy of the top value into the stack two values from the top. value1 and value2 must not be of the type double or long."
   },
   {
     "Mnemonic": "dup_x2",
     "Hex": "5b",
     "Binary": "0101 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value3, value2, value1 → value1, value3, value2, value1",
+    "otherBytes": "",
+    "stack": "value3, value2, value1 → value1, value3, value2, value1",
     "Description": "insert a copy of the top value into the stack two (if value2 is double or long it takes up the entry of value3, too) or three values (if value2 is neither double nor long) from the top"
   },
   {
     "Mnemonic": "dup2",
     "Hex": "5c",
     "Binary": "0101 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "{value2, value1} → {value2, value1}, {value2, value1}",
+    "otherBytes": "",
+    "stack": "{value2, value1} → {value2, value1}, {value2, value1}",
     "Description": "duplicate top two stack words (two values, if value1 is not double nor long; a single value, if value1 is double or long)"
   },
   {
     "Mnemonic": "dup2_x1",
     "Hex": "5d",
     "Binary": "0101 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value3, {value2, value1} → {value2, value1}, value3, {value2, value1}",
+    "otherBytes": "",
+    "stack": "value3, {value2, value1} → {value2, value1}, value3, {value2, value1}",
     "Description": "duplicate two words and insert beneath third word (see explanation above)"
   },
   {
     "Mnemonic": "dup2_x2",
     "Hex": "5e",
     "Binary": "0101 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "{value4, value3}, {value2, value1} → {value2, value1}, {value4, value3}, {value2, value1}",
+    "otherBytes": "",
+    "stack": "{value4, value3}, {value2, value1} → {value2, value1}, {value4, value3}, {value2, value1}",
     "Description": "duplicate two words and insert beneath fourth word"
   },
   {
     "Mnemonic": "f2d",
     "Hex": "8d",
     "Binary": "1000 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a float to a double"
   },
   {
     "Mnemonic": "f2i",
     "Hex": "8b",
     "Binary": "1000 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a float to an int"
   },
   {
     "Mnemonic": "f2l",
     "Hex": "8c",
     "Binary": "1000 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a float to a long"
   },
   {
     "Mnemonic": "fadd",
     "Hex": "62",
     "Binary": "0110 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "add two floats"
   },
   {
     "Mnemonic": "faload",
     "Hex": "30",
     "Binary": "0011 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load a float from an array"
   },
   {
     "Mnemonic": "fastore",
     "Hex": "51",
     "Binary": "0101 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store a float in an array"
   },
   {
     "Mnemonic": "fcmpg",
     "Hex": "96",
     "Binary": "1001 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "compare two floats"
   },
   {
     "Mnemonic": "fcmpl",
     "Hex": "95",
     "Binary": "1001 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "compare two floats"
   },
   {
     "Mnemonic": "fconst_0",
     "Hex": "0b",
     "Binary": "0000 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 0.0f",
+    "otherBytes": "",
+    "stack": "→ 0.0f",
     "Description": "push 0.0f on the stack"
   },
   {
     "Mnemonic": "fconst_1",
     "Hex": "0c",
     "Binary": "0000 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 1.0f",
+    "otherBytes": "",
+    "stack": "→ 1.0f",
     "Description": "push 1.0f on the stack"
   },
   {
     "Mnemonic": "fconst_2",
     "Hex": "0d",
     "Binary": "0000 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 2.0f",
+    "otherBytes": "",
+    "stack": "→ 2.0f",
     "Description": "push 2.0f on the stack"
   },
   {
     "Mnemonic": "fdiv",
     "Hex": "6e",
     "Binary": "0110 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "divide two floats"
   },
   {
     "Mnemonic": "fload",
     "Hex": "17",
     "Binary": "0001 0111",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "1: index",
+    "stack": "→ value",
     "Description": "load a float value from a local variable #index"
   },
   {
     "Mnemonic": "fload_0",
     "Hex": "22",
     "Binary": "0010 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a float value from local variable 0"
   },
   {
     "Mnemonic": "fload_1",
     "Hex": "23",
     "Binary": "0010 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a float value from local variable 1"
   },
   {
     "Mnemonic": "fload_2",
     "Hex": "24",
     "Binary": "0010 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a float value from local variable 2"
   },
   {
     "Mnemonic": "fload_3",
     "Hex": "25",
     "Binary": "0010 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a float value from local variable 3"
   },
   {
     "Mnemonic": "fmul",
     "Hex": "6a",
     "Binary": "0110 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "multiply two floats"
   },
   {
     "Mnemonic": "fneg",
     "Hex": "76",
     "Binary": "0111 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "negate a float"
   },
   {
     "Mnemonic": "frem",
     "Hex": "72",
     "Binary": "0111 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "get the remainder from a division between two floats"
   },
   {
     "Mnemonic": "freturn",
     "Hex": "ae",
     "Binary": "1010 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → [empty]",
+    "otherBytes": "",
+    "stack": "value → [empty]",
     "Description": "return a float"
   },
   {
     "Mnemonic": "fstore",
     "Hex": "38",
     "Binary": "0011 1000",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "1: index",
+    "stack": "value →",
     "Description": "store a float value into a local variable #index"
   },
   {
     "Mnemonic": "fstore_0",
     "Hex": "43",
     "Binary": "0100 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a float value into local variable 0"
   },
   {
     "Mnemonic": "fstore_1",
     "Hex": "44",
     "Binary": "0100 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a float value into local variable 1"
   },
   {
     "Mnemonic": "fstore_2",
     "Hex": "45",
     "Binary": "0100 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a float value into local variable 2"
   },
   {
     "Mnemonic": "fstore_3",
     "Hex": "46",
     "Binary": "0100 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a float value into local variable 3"
   },
   {
     "Mnemonic": "fsub",
     "Hex": "66",
     "Binary": "0110 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "subtract two floats"
   },
   {
     "Mnemonic": "getfield",
     "Hex": "b4",
     "Binary": "1011 0100",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "objectref → value",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "objectref → value",
     "Description": "get a field value of an object objectref, where the field is identified by field reference in the constant pool index (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "getstatic",
     "Hex": "b2",
     "Binary": "1011 0010",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "→ value",
     "Description": "get a static field value of a class, where the field is identified by field reference in the constant pool index (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "goto",
     "Hex": "a7",
     "Binary": "1010 0111",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "[no change]",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "[no change]",
     "Description": "goes to another instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "goto_w",
     "Hex": "c8",
     "Binary": "1100 1000",
-    "Other bytes\n[count]: [operand labels]": "4: branchbyte1, branchbyte2, branchbyte3, branchbyte4",
-    "Stack\n[before]→[after]": "[no change]",
+    "otherBytes": "4: branchbyte1, branchbyte2, branchbyte3, branchbyte4",
+    "stack": "[no change]",
     "Description": "goes to another instruction at branchoffset (signed int constructed from unsigned bytes branchbyte1 << 24 + branchbyte2 << 16 + branchbyte3 << 8 + branchbyte4)"
   },
   {
     "Mnemonic": "i2b",
     "Hex": "91",
     "Binary": "1001 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert an int into a byte"
   },
   {
     "Mnemonic": "i2c",
     "Hex": "92",
     "Binary": "1001 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert an int into a character"
   },
   {
     "Mnemonic": "i2d",
     "Hex": "87",
     "Binary": "1000 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert an int into a double"
   },
   {
     "Mnemonic": "i2f",
     "Hex": "86",
     "Binary": "1000 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert an int into a float"
   },
   {
     "Mnemonic": "i2l",
     "Hex": "85",
     "Binary": "1000 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert an int into a long"
   },
   {
     "Mnemonic": "i2s",
     "Hex": "93",
     "Binary": "1001 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert an int into a short"
   },
   {
     "Mnemonic": "iadd",
     "Hex": "60",
     "Binary": "0110 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "add two ints"
   },
   {
     "Mnemonic": "iaload",
     "Hex": "2e",
     "Binary": "0010 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load an int from an array"
   },
   {
     "Mnemonic": "iand",
     "Hex": "7e",
     "Binary": "0111 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "perform a bitwise AND on two integers"
   },
   {
     "Mnemonic": "iastore",
     "Hex": "4f",
     "Binary": "0100 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store an int into an array"
   },
   {
     "Mnemonic": "iconst_m1",
     "Hex": "02",
     "Binary": "0000 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ -1",
+    "otherBytes": "",
+    "stack": "→ -1",
     "Description": "load the int value −1 onto the stack"
   },
   {
     "Mnemonic": "iconst_0",
     "Hex": "03",
     "Binary": "0000 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 0",
+    "otherBytes": "",
+    "stack": "→ 0",
     "Description": "load the int value 0 onto the stack"
   },
   {
     "Mnemonic": "iconst_1",
     "Hex": "04",
     "Binary": "0000 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 1",
+    "otherBytes": "",
+    "stack": "→ 1",
     "Description": "load the int value 1 onto the stack"
   },
   {
     "Mnemonic": "iconst_2",
     "Hex": "05",
     "Binary": "0000 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 2",
+    "otherBytes": "",
+    "stack": "→ 2",
     "Description": "load the int value 2 onto the stack"
   },
   {
     "Mnemonic": "iconst_3",
     "Hex": "06",
     "Binary": "0000 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 3",
+    "otherBytes": "",
+    "stack": "→ 3",
     "Description": "load the int value 3 onto the stack"
   },
   {
     "Mnemonic": "iconst_4",
     "Hex": "07",
     "Binary": "0000 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 4",
+    "otherBytes": "",
+    "stack": "→ 4",
     "Description": "load the int value 4 onto the stack"
   },
   {
     "Mnemonic": "iconst_5",
     "Hex": "08",
     "Binary": "0000 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 5",
+    "otherBytes": "",
+    "stack": "→ 5",
     "Description": "load the int value 5 onto the stack"
   },
   {
     "Mnemonic": "idiv",
     "Hex": "6c",
     "Binary": "0110 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "divide two integers"
   },
   {
     "Mnemonic": "if_acmpeq",
     "Hex": "a5",
     "Binary": "1010 0101",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if references are equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "if_acmpne",
     "Hex": "a6",
     "Binary": "1010 0110",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if references are not equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "if_icmpeq",
     "Hex": "9f",
     "Binary": "1001 1111",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if ints are equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "if_icmpge",
     "Hex": "a2",
     "Binary": "1010 0010",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if value1 is greater than or equal to value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "if_icmpgt",
     "Hex": "a3",
     "Binary": "1010 0011",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if value1 is greater than value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "if_icmple",
     "Hex": "a4",
     "Binary": "1010 0100",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if value1 is less than or equal to value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "if_icmplt",
     "Hex": "a1",
     "Binary": "1010 0001",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if value1 is less than value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "if_icmpne",
     "Hex": "a0",
     "Binary": "1010 0000",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value1, value2 →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value1, value2 →",
     "Description": "if ints are not equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "ifeq",
     "Hex": "99",
     "Binary": "1001 1001",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "ifge",
     "Hex": "9c",
     "Binary": "1001 1100",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is greater than or equal to 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "ifgt",
     "Hex": "9d",
     "Binary": "1001 1101",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is greater than 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "ifle",
     "Hex": "9e",
     "Binary": "1001 1110",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is less than or equal to 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "iflt",
     "Hex": "9b",
     "Binary": "1001 1011",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is less than 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "ifne",
     "Hex": "9a",
     "Binary": "1001 1010",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is not 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "ifnonnull",
     "Hex": "c7",
     "Binary": "1100 0111",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is not null, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "ifnull",
     "Hex": "c6",
     "Binary": "1100 0110",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "value →",
     "Description": "if value is null, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2)"
   },
   {
     "Mnemonic": "iinc",
     "Hex": "84",
     "Binary": "1000 0100",
-    "Other bytes\n[count]: [operand labels]": "2: index, const",
-    "Stack\n[before]→[after]": "[No change]",
+    "otherBytes": "2: index, const",
+    "stack": "[No change]",
     "Description": "increment local variable #index by signed byte const"
   },
   {
     "Mnemonic": "iload",
     "Hex": "15",
     "Binary": "0001 0101",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "1: index",
+    "stack": "→ value",
     "Description": "load an int value from a local variable #index"
   },
   {
     "Mnemonic": "iload_0",
     "Hex": "1a",
     "Binary": "0001 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load an int value from local variable 0"
   },
   {
     "Mnemonic": "iload_1",
     "Hex": "1b",
     "Binary": "0001 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load an int value from local variable 1"
   },
   {
     "Mnemonic": "iload_2",
     "Hex": "1c",
     "Binary": "0001 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load an int value from local variable 2"
   },
   {
     "Mnemonic": "iload_3",
     "Hex": "1d",
     "Binary": "0001 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load an int value from local variable 3"
   },
   {
     "Mnemonic": "impdep1",
     "Hex": "fe",
     "Binary": "1111 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "",
+    "otherBytes": "",
+    "stack": "",
     "Description": "reserved for implementation-dependent operations within debuggers; should not appear in any class file"
   },
   {
     "Mnemonic": "impdep2",
     "Hex": "ff",
     "Binary": "1111 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "",
+    "otherBytes": "",
+    "stack": "",
     "Description": "reserved for implementation-dependent operations within debuggers; should not appear in any class file"
   },
   {
     "Mnemonic": "imul",
     "Hex": "68",
     "Binary": "0110 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "multiply two integers"
   },
   {
     "Mnemonic": "ineg",
     "Hex": "74",
     "Binary": "0111 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "negate int"
   },
   {
     "Mnemonic": "instanceof",
     "Hex": "c1",
     "Binary": "1100 0001",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "objectref → result",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "objectref → result",
     "Description": "determines if an object objectref is of a given type, identified by class reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "invokedynamic",
     "Hex": "ba",
     "Binary": "1011 1010",
-    "Other bytes\n[count]: [operand labels]": "4: indexbyte1, indexbyte2, 0, 0",
-    "Stack\n[before]→[after]": "[arg1, [arg2 ...]] → result",
+    "otherBytes": "4: indexbyte1, indexbyte2, 0, 0",
+    "stack": "[arg1, [arg2 ...]] → result",
     "Description": "invokes a dynamic method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "invokeinterface",
     "Hex": "b9",
     "Binary": "1011 1001",
-    "Other bytes\n[count]: [operand labels]": "4: indexbyte1, indexbyte2, count, 0",
-    "Stack\n[before]→[after]": "objectref, [arg1, arg2, ...] → result",
+    "otherBytes": "4: indexbyte1, indexbyte2, count, 0",
+    "stack": "objectref, [arg1, arg2, ...] → result",
     "Description": "invokes an interface method on object objectref and puts the result on the stack (might be void); the interface method is identified by method reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "invokespecial",
     "Hex": "b7",
     "Binary": "1011 0111",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "objectref, [arg1, arg2, ...] → result",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "objectref, [arg1, arg2, ...] → result",
     "Description": "invoke instance method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "invokestatic",
     "Hex": "b8",
     "Binary": "1011 1000",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "[arg1, arg2, ...] → result",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "[arg1, arg2, ...] → result",
     "Description": "invoke a static method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "invokevirtual",
     "Hex": "b6",
     "Binary": "1011 0110",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "objectref, [arg1, arg2, ...] → result",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "objectref, [arg1, arg2, ...] → result",
     "Description": "invoke virtual method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "ior",
     "Hex": "80",
     "Binary": "1000 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "bitwise int OR"
   },
   {
     "Mnemonic": "irem",
     "Hex": "70",
     "Binary": "0111 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "logical int remainder"
   },
   {
     "Mnemonic": "ireturn",
     "Hex": "ac",
     "Binary": "1010 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → [empty]",
+    "otherBytes": "",
+    "stack": "value → [empty]",
     "Description": "return an integer from a method"
   },
   {
     "Mnemonic": "ishl",
     "Hex": "78",
     "Binary": "0111 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "int shift left"
   },
   {
     "Mnemonic": "ishr",
     "Hex": "7a",
     "Binary": "0111 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "int arithmetic shift right"
   },
   {
     "Mnemonic": "istore",
     "Hex": "36",
     "Binary": "0011 0110",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "1: index",
+    "stack": "value →",
     "Description": "store int value into variable #index"
   },
   {
     "Mnemonic": "istore_0",
     "Hex": "3b",
     "Binary": "0011 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store int value into variable 0"
   },
   {
     "Mnemonic": "istore_1",
     "Hex": "3c",
     "Binary": "0011 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store int value into variable 1"
   },
   {
     "Mnemonic": "istore_2",
     "Hex": "3d",
     "Binary": "0011 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store int value into variable 2"
   },
   {
     "Mnemonic": "istore_3",
     "Hex": "3e",
     "Binary": "0011 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store int value into variable 3"
   },
   {
     "Mnemonic": "isub",
     "Hex": "64",
     "Binary": "0110 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "int subtract"
   },
   {
     "Mnemonic": "iushr",
     "Hex": "7c",
     "Binary": "0111 1100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "int logical shift right"
   },
   {
     "Mnemonic": "ixor",
     "Hex": "82",
     "Binary": "1000 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "int xor"
   },
   {
     "Mnemonic": "jsr",
     "Hex": "a8",
     "Binary": "1010 1000",
-    "Other bytes\n[count]: [operand labels]": "2: branchbyte1, branchbyte2",
-    "Stack\n[before]→[after]": "→ address",
+    "otherBytes": "2: branchbyte1, branchbyte2",
+    "stack": "→ address",
     "Description": "jump to subroutine at branchoffset (signed short constructed from unsigned bytes branchbyte1 << 8 + branchbyte2) and place the return address on the stack"
   },
   {
     "Mnemonic": "jsr_w",
     "Hex": "c9",
     "Binary": "1100 1001",
-    "Other bytes\n[count]: [operand labels]": "4: branchbyte1, branchbyte2, branchbyte3, branchbyte4",
-    "Stack\n[before]→[after]": "→ address",
+    "otherBytes": "4: branchbyte1, branchbyte2, branchbyte3, branchbyte4",
+    "stack": "→ address",
     "Description": "jump to subroutine at branchoffset (signed int constructed from unsigned bytes branchbyte1 << 24 + branchbyte2 << 16 + branchbyte3 << 8 + branchbyte4) and place the return address on the stack"
   },
   {
     "Mnemonic": "l2d",
     "Hex": "8a",
     "Binary": "1000 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a long to a double"
   },
   {
     "Mnemonic": "l2f",
     "Hex": "89",
     "Binary": "1000 1001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a long to a float"
   },
   {
     "Mnemonic": "l2i",
     "Hex": "88",
     "Binary": "1000 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "convert a long to a int"
   },
   {
     "Mnemonic": "ladd",
     "Hex": "61",
     "Binary": "0110 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "add two longs"
   },
   {
     "Mnemonic": "laload",
     "Hex": "2f",
     "Binary": "0010 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load a long from an array"
   },
   {
     "Mnemonic": "land",
     "Hex": "7f",
     "Binary": "0111 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "bitwise AND of two longs"
   },
   {
     "Mnemonic": "lastore",
     "Hex": "50",
     "Binary": "0101 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store a long to an array"
   },
   {
     "Mnemonic": "lcmp",
     "Hex": "94",
     "Binary": "1001 0100",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "push 0 if the two longs are the same, 1 if value1 is greater than value2, -1 otherwise"
   },
   {
     "Mnemonic": "lconst_0",
     "Hex": "09",
     "Binary": "0000 1001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 0L",
+    "otherBytes": "",
+    "stack": "→ 0L",
     "Description": "push 0L (the number zero with type long) onto the stack"
   },
   {
     "Mnemonic": "lconst_1",
     "Hex": "0a",
     "Binary": "0000 1010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ 1L",
+    "otherBytes": "",
+    "stack": "→ 1L",
     "Description": "push 1L (the number one with type long) onto the stack"
   },
   {
     "Mnemonic": "ldc",
     "Hex": "12",
     "Binary": "0001 0010",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "1: index",
+    "stack": "→ value",
     "Description": "push a constant #index from a constant pool (String, int, float, Class, java.lang.invoke.MethodType, java.lang.invoke.MethodHandle, or a dynamically-computed constant) onto the stack"
   },
   {
     "Mnemonic": "ldc_w",
     "Hex": "13",
     "Binary": "0001 0011",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "→ value",
     "Description": "push a constant #index from a constant pool (String, int, float, Class, java.lang.invoke.MethodType, java.lang.invoke.MethodHandle, or a dynamically-computed constant) onto the stack (wide index is constructed as indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "ldc2_w",
     "Hex": "14",
     "Binary": "0001 0100",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "→ value",
     "Description": "push a constant #index from a constant pool (double, long, or a dynamically-computed constant) onto the stack (wide index is constructed as indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "ldiv",
     "Hex": "6d",
     "Binary": "0110 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "divide two longs"
   },
   {
     "Mnemonic": "lload",
     "Hex": "16",
     "Binary": "0001 0110",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "1: index",
+    "stack": "→ value",
     "Description": "load a long value from a local variable #index"
   },
   {
     "Mnemonic": "lload_0",
     "Hex": "1e",
     "Binary": "0001 1110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a long value from a local variable 0"
   },
   {
     "Mnemonic": "lload_1",
     "Hex": "1f",
     "Binary": "0001 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a long value from a local variable 1"
   },
   {
     "Mnemonic": "lload_2",
     "Hex": "20",
     "Binary": "0010 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a long value from a local variable 2"
   },
   {
     "Mnemonic": "lload_3",
     "Hex": "21",
     "Binary": "0010 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "",
+    "stack": "→ value",
     "Description": "load a long value from a local variable 3"
   },
   {
     "Mnemonic": "lmul",
     "Hex": "69",
     "Binary": "0110 1001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "multiply two longs"
   },
   {
     "Mnemonic": "lneg",
     "Hex": "75",
     "Binary": "0111 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → result",
+    "otherBytes": "",
+    "stack": "value → result",
     "Description": "negate a long"
   },
   {
     "Mnemonic": "lookupswitch",
     "Hex": "ab",
     "Binary": "1010 1011",
-    "Other bytes\n[count]: [operand labels]": "8+: <0–3 bytes padding>, defaultbyte1, defaultbyte2, defaultbyte3, defaultbyte4, npairs1, npairs2, npairs3, npairs4, match-offset pairs...",
-    "Stack\n[before]→[after]": "key →",
+    "otherBytes": "8+: <0–3 bytes padding>, defaultbyte1, defaultbyte2, defaultbyte3, defaultbyte4, npairs1, npairs2, npairs3, npairs4, match-offset pairs...",
+    "stack": "key →",
     "Description": "a target address is looked up from a table using a key and execution continues from the instruction at that address"
   },
   {
     "Mnemonic": "lor",
     "Hex": "81",
     "Binary": "1000 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "bitwise OR of two longs"
   },
   {
     "Mnemonic": "lrem",
     "Hex": "71",
     "Binary": "0111 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "remainder of division of two longs"
   },
   {
     "Mnemonic": "lreturn",
     "Hex": "ad",
     "Binary": "1010 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value → [empty]",
+    "otherBytes": "",
+    "stack": "value → [empty]",
     "Description": "return a long value"
   },
   {
     "Mnemonic": "lshl",
     "Hex": "79",
     "Binary": "0111 1001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "bitwise shift left of a long value1 by int value2 positions"
   },
   {
     "Mnemonic": "lshr",
     "Hex": "7b",
     "Binary": "0111 1011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "bitwise shift right of a long value1 by int value2 positions"
   },
   {
     "Mnemonic": "lstore",
     "Hex": "37",
     "Binary": "0011 0111",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "1: index",
+    "stack": "value →",
     "Description": "store a long value in a local variable #index"
   },
   {
     "Mnemonic": "lstore_0",
     "Hex": "3f",
     "Binary": "0011 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a long value in a local variable 0"
   },
   {
     "Mnemonic": "lstore_1",
     "Hex": "40",
     "Binary": "0100 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a long value in a local variable 1"
   },
   {
     "Mnemonic": "lstore_2",
     "Hex": "41",
     "Binary": "0100 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a long value in a local variable 2"
   },
   {
     "Mnemonic": "lstore_3",
     "Hex": "42",
     "Binary": "0100 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "store a long value in a local variable 3"
   },
   {
     "Mnemonic": "lsub",
     "Hex": "65",
     "Binary": "0110 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "subtract two longs"
   },
   {
     "Mnemonic": "lushr",
     "Hex": "7d",
     "Binary": "0111 1101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "bitwise shift right of a long value1 by int value2 positions, unsigned"
   },
   {
     "Mnemonic": "lxor",
     "Hex": "83",
     "Binary": "1000 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value1, value2 → result",
+    "otherBytes": "",
+    "stack": "value1, value2 → result",
     "Description": "bitwise XOR of two longs"
   },
   {
     "Mnemonic": "monitorenter",
     "Hex": "c2",
     "Binary": "1100 0010",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref →",
+    "otherBytes": "",
+    "stack": "objectref →",
     "Description": "enter monitor for object (\"grab the lock\" – start of synchronized() section)"
   },
   {
     "Mnemonic": "monitorexit",
     "Hex": "c3",
     "Binary": "1100 0011",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "objectref →",
+    "otherBytes": "",
+    "stack": "objectref →",
     "Description": "exit monitor for object (\"release the lock\" – end of synchronized() section)"
   },
   {
     "Mnemonic": "multianewarray",
     "Hex": "c5",
     "Binary": "1100 0101",
-    "Other bytes\n[count]: [operand labels]": "3: indexbyte1, indexbyte2, dimensions",
-    "Stack\n[before]→[after]": "count1, [count2,...] → arrayref",
+    "otherBytes": "3: indexbyte1, indexbyte2, dimensions",
+    "stack": "count1, [count2,...] → arrayref",
     "Description": "create a new array of dimensions dimensions of type identified by class reference in constant pool index (indexbyte1 << 8 + indexbyte2); the sizes of each dimension is identified by count1, [count2, etc.]"
   },
   {
     "Mnemonic": "new",
     "Hex": "bb",
     "Binary": "1011 1011",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "→ objectref",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "→ objectref",
     "Description": "create new object of type identified by class reference in constant pool index (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "newarray",
     "Hex": "bc",
     "Binary": "1011 1100",
-    "Other bytes\n[count]: [operand labels]": "1: atype",
-    "Stack\n[before]→[after]": "count → arrayref",
+    "otherBytes": "1: atype",
+    "stack": "count → arrayref",
     "Description": "create new array with count elements of primitive type identified by atype"
   },
   {
     "Mnemonic": "nop",
     "Hex": "00",
     "Binary": "0000 0000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "[No change]",
+    "otherBytes": "",
+    "stack": "[No change]",
     "Description": "perform no operation"
   },
   {
     "Mnemonic": "pop",
     "Hex": "57",
     "Binary": "0101 0111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "",
+    "stack": "value →",
     "Description": "discard the top value on the stack"
   },
   {
     "Mnemonic": "pop2",
     "Hex": "58",
     "Binary": "0101 1000",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "{value2, value1} →",
+    "otherBytes": "",
+    "stack": "{value2, value1} →",
     "Description": "discard the top two values on the stack (or one value, if it is a double or long)"
   },
   {
     "Mnemonic": "putfield",
     "Hex": "b5",
     "Binary": "1011 0101",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "objectref, value →",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "objectref, value →",
     "Description": "set field to value in an object objectref, where the field is identified by a field reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "putstatic",
     "Hex": "b3",
     "Binary": "1011 0011",
-    "Other bytes\n[count]: [operand labels]": "2: indexbyte1, indexbyte2",
-    "Stack\n[before]→[after]": "value →",
+    "otherBytes": "2: indexbyte1, indexbyte2",
+    "stack": "value →",
     "Description": "set static field to value in a class, where the field is identified by a field reference index in constant pool (indexbyte1 << 8 + indexbyte2)"
   },
   {
     "Mnemonic": "ret",
     "Hex": "a9",
     "Binary": "1010 1001",
-    "Other bytes\n[count]: [operand labels]": "1: index",
-    "Stack\n[before]→[after]": "[No change]",
+    "otherBytes": "1: index",
+    "stack": "[No change]",
     "Description": "continue execution from address taken from a local variable #index (the asymmetry with jsr is intentional)"
   },
   {
     "Mnemonic": "return",
     "Hex": "b1",
     "Binary": "1011 0001",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "→ [empty]",
+    "otherBytes": "",
+    "stack": "→ [empty]",
     "Description": "return void from method"
   },
   {
     "Mnemonic": "saload",
     "Hex": "35",
     "Binary": "0011 0101",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index → value",
+    "otherBytes": "",
+    "stack": "arrayref, index → value",
     "Description": "load short from array"
   },
   {
     "Mnemonic": "sastore",
     "Hex": "56",
     "Binary": "0101 0110",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "arrayref, index, value →",
+    "otherBytes": "",
+    "stack": "arrayref, index, value →",
     "Description": "store short to array"
   },
   {
     "Mnemonic": "sipush",
     "Hex": "11",
     "Binary": "0001 0001",
-    "Other bytes\n[count]: [operand labels]": "2: byte1, byte2",
-    "Stack\n[before]→[after]": "→ value",
+    "otherBytes": "2: byte1, byte2",
+    "stack": "→ value",
     "Description": "push a short onto the stack as an integer value"
   },
   {
     "Mnemonic": "swap",
     "Hex": "5f",
     "Binary": "0101 1111",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "value2, value1 → value1, value2",
+    "otherBytes": "",
+    "stack": "value2, value1 → value1, value2",
     "Description": "swaps two top words on the stack (note that value1 and value2 must not be double or long)"
   },
   {
     "Mnemonic": "tableswitch",
     "Hex": "aa",
     "Binary": "1010 1010",
-    "Other bytes\n[count]: [operand labels]": "16+: [0–3 bytes padding], defaultbyte1, defaultbyte2, defaultbyte3, defaultbyte4, lowbyte1, lowbyte2, lowbyte3, lowbyte4, highbyte1, highbyte2, highbyte3, highbyte4, jump offsets...",
-    "Stack\n[before]→[after]": "index →",
+    "otherBytes": "16+: [0–3 bytes padding], defaultbyte1, defaultbyte2, defaultbyte3, defaultbyte4, lowbyte1, lowbyte2, lowbyte3, lowbyte4, highbyte1, highbyte2, highbyte3, highbyte4, jump offsets...",
+    "stack": "index →",
     "Description": "continue execution from an address in the table at offset index"
   },
   {
     "Mnemonic": "wide",
     "Hex": "c4",
     "Binary": "1100 0100",
-    "Other bytes\n[count]: [operand labels]": "3/5: opcode, indexbyte1, indexbyte2\nor\n iinc, indexbyte1, indexbyte2, countbyte1, countbyte2",
-    "Stack\n[before]→[after]": "[same as for corresponding instructions]",
+    "otherBytes": "3/5: opcode, indexbyte1, indexbyte2\nor\n iinc, indexbyte1, indexbyte2, countbyte1, countbyte2",
+    "stack": "[same as for corresponding instructions]",
     "Description": "execute opcode, where opcode is either iload, fload, aload, lload, dload, istore, fstore, astore, lstore, dstore, or ret, but assume the index is 16 bit; or execute iinc, where the index is 16 bits and the constant to increment by is a signed 16 bit short"
   },
   {
     "Mnemonic": "(no name)",
     "Hex": "cb-fd",
     "Binary": "",
-    "Other bytes\n[count]: [operand labels]": "",
-    "Stack\n[before]→[after]": "",
+    "otherBytes": "",
+    "stack": "",
     "Description": "these values are currently unassigned for opcodes and are reserved for future use"
   }
 ]

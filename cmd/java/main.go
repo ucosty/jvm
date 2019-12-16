@@ -14,8 +14,9 @@ func main() {
 	metaspace := jvm.NewMetaspace()
 
 	//Load the intrinsics
-	for _, class := range intrinsics.Classes() {
-		if err := metaspace.LoadFromStruct(&class); err != nil {
+	classes := intrinsics.Classes()
+	for i, _ := range intrinsics.Classes() {
+		if err := metaspace.LoadFromStruct(&classes[i]); err != nil {
 			log.Fatalf("failed to load intrinsics: %v\n", err)
 		}
 	}

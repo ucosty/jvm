@@ -6,6 +6,7 @@ import (
 
 type opcode struct {
 	Name    string
+	Size    int
 	Handler func(code []byte, f *Frame) error
 }
 
@@ -13,211 +14,211 @@ var opcodes []opcode
 
 func init() {
 	opcodes = []opcode{
-		{"nop", nop},                         //00
-		{"aconst_null", unknown},             //01
-		{"iconst_m1", unknown},               //02
-		{"iconst_0", unknown},                //03
-		{"iconst_1", unknown},                //04
-		{"iconst_2", unknown},                //05
-		{"iconst_3", unknown},                //06
-		{"iconst_4", unknown},                //07
-		{"iconst_5", unknown},                //08
-		{"lconst_0", unknown},                //09
-		{"lconst_1", unknown},                //0a
-		{"fconst_0", unknown},                //0b
-		{"fconst_1", unknown},                //0c
-		{"fconst_2", unknown},                //0d
-		{"dconst_0", unknown},                //0e
-		{"dconst_1", unknown},                //0f
-		{"bipush", unknown},                  //10
-		{"sipush", unknown},                  //11
-		{"ldc", ldc},                         //12
-		{"ldc_w", unknown},                   //13
-		{"ldc2_w", unknown},                  //14
-		{"iload", unknown},                   //15
-		{"lload", unknown},                   //16
-		{"fload", unknown},                   //17
-		{"dload", unknown},                   //18
-		{"aload", unknown},                   //19
-		{"iload_0", unknown},                 //1a
-		{"iload_1", unknown},                 //1b
-		{"iload_2", unknown},                 //1c
-		{"iload_3", unknown},                 //1d
-		{"lload_0", unknown},                 //1e
-		{"lload_1", unknown},                 //1f
-		{"lload_2", unknown},                 //20
-		{"lload_3", unknown},                 //21
-		{"fload_0", unknown},                 //22
-		{"fload_1", unknown},                 //23
-		{"fload_2", unknown},                 //24
-		{"fload_3", unknown},                 //25
-		{"dload_0", unknown},                 //26
-		{"dload_1", unknown},                 //27
-		{"dload_2", unknown},                 //28
-		{"dload_3", unknown},                 //29
-		{"aload_0", unknown},                 //2a
-		{"aload_1", unknown},                 //2b
-		{"aload_2", unknown},                 //2c
-		{"aload_3", unknown},                 //2d
-		{"iaload", unknown},                  //2e
-		{"laload", unknown},                  //2f
-		{"faload", unknown},                  //30
-		{"daload", unknown},                  //31
-		{"aaload", unknown},                  //32
-		{"baload", unknown},                  //33
-		{"caload", unknown},                  //34
-		{"saload", unknown},                  //35
-		{"istore", unknown},                  //36
-		{"lstore", unknown},                  //37
-		{"fstore", unknown},                  //38
-		{"dstore", unknown},                  //39
-		{"astore", unknown},                  //3a
-		{"istore_0", unknown},                //3b
-		{"istore_1", unknown},                //3c
-		{"istore_2", unknown},                //3d
-		{"istore_3", unknown},                //3e
-		{"lstore_0", unknown},                //3f
-		{"lstore_1", unknown},                //40
-		{"lstore_2", unknown},                //41
-		{"lstore_3", unknown},                //42
-		{"fstore_0", unknown},                //43
-		{"fstore_1", unknown},                //44
-		{"fstore_2", unknown},                //45
-		{"fstore_3", unknown},                //46
-		{"dstore_0", unknown},                //47
-		{"dstore_1", unknown},                //48
-		{"dstore_2", unknown},                //49
-		{"dstore_3", unknown},                //4a
-		{"astore_0", unknown},                //4b
-		{"astore_1", unknown},                //4c
-		{"astore_2", unknown},                //4d
-		{"astore_3", unknown},                //4e
-		{"iastore", unknown},                 //4f
-		{"lastore", unknown},                 //50
-		{"fastore", unknown},                 //51
-		{"dastore", unknown},                 //52
-		{"aastore", unknown},                 //53
-		{"bastore", unknown},                 //54
-		{"castore", unknown},                 //55
-		{"sastore", unknown},                 //56
-		{"pop", unknown},                     //57
-		{"pop2", unknown},                    //58
-		{"dup", unknown},                     //59
-		{"dup_x1", unknown},                  //5a
-		{"dup_x2", unknown},                  //5b
-		{"dup2", unknown},                    //5c
-		{"dup2_x1", unknown},                 //5d
-		{"dup2_x2", unknown},                 //5e
-		{"swap", unknown},                    //5f
-		{"iadd", unknown},                    //60
-		{"ladd", unknown},                    //61
-		{"fadd", unknown},                    //62
-		{"dadd", unknown},                    //63
-		{"isub", unknown},                    //64
-		{"lsub", unknown},                    //65
-		{"fsub", unknown},                    //66
-		{"dsub", unknown},                    //67
-		{"imul", unknown},                    //68
-		{"lmul", unknown},                    //69
-		{"fmul", unknown},                    //6a
-		{"dmul", unknown},                    //6b
-		{"idiv", unknown},                    //6c
-		{"ldiv", unknown},                    //6d
-		{"fdiv", unknown},                    //6e
-		{"ddiv", unknown},                    //6f
-		{"irem", unknown},                    //70
-		{"lrem", unknown},                    //71
-		{"frem", unknown},                    //72
-		{"drem", unknown},                    //73
-		{"ineg", unknown},                    //74
-		{"lneg", unknown},                    //75
-		{"fneg", unknown},                    //76
-		{"dneg", unknown},                    //77
-		{"ishl", unknown},                    //78
-		{"lshl", unknown},                    //79
-		{"ishr", unknown},                    //7a
-		{"lshr", unknown},                    //7b
-		{"iushr", unknown},                   //7c
-		{"lushr", unknown},                   //7d
-		{"iand", unknown},                    //7e
-		{"land", unknown},                    //7f
-		{"ior", unknown},                     //80
-		{"lor", unknown},                     //81
-		{"ixor", unknown},                    //82
-		{"lxor", unknown},                    //83
-		{"iinc", unknown},                    //84
-		{"i2l", unknown},                     //85
-		{"i2f", unknown},                     //86
-		{"i2d", unknown},                     //87
-		{"l2i", unknown},                     //88
-		{"l2f", unknown},                     //89
-		{"l2d", unknown},                     //8a
-		{"f2i", unknown},                     //8b
-		{"f2l", unknown},                     //8c
-		{"f2d", unknown},                     //8d
-		{"d2i", unknown},                     //8e
-		{"d2l", unknown},                     //8f
-		{"d2f", unknown},                     //90
-		{"i2b", unknown},                     //91
-		{"i2c", unknown},                     //92
-		{"i2s", unknown},                     //93
-		{"lcmp", unknown},                    //94
-		{"fcmpl", unknown},                   //95
-		{"fcmpg", unknown},                   //96
-		{"dcmpl", unknown},                   //97
-		{"dcmpg", unknown},                   //98
-		{"ifeq", unknown},                    //99
-		{"ifne", unknown},                    //9a
-		{"iflt", unknown},                    //9b
-		{"ifge", unknown},                    //9c
-		{"ifgt", unknown},                    //9d
-		{"ifle", unknown},                    //9e
-		{"if_icmpeq", unknown},               //9f
-		{"if_icmpne", unknown},               //a0
-		{"if_icmplt", unknown},               //a1
-		{"if_icmpge", unknown},               //a2
-		{"if_icmpgt", unknown},               //a3
-		{"if_icmple", unknown},               //a4
-		{"if_acmpeq", unknown},               //a5
-		{"if_acmpne", unknown},               //a6
-		{"goto", unknown},                    //a7
-		{"jsr", unknown},                     //a8
-		{"ret", unknown},                     //a9
-		{"tableswitch", unknown},             //aa
-		{"lookupswitch", unknown},            //ab
-		{"ireturn", unknown},                 //ac
-		{"lreturn", unknown},                 //ad
-		{"freturn", unknown},                 //ae
-		{"dreturn", unknown},                 //af
-		{"areturn", unknown},                 //b0
-		{"return", returnVoid},               //b1
-		{"getstatic", getStatic},             //b2
-		{"putstatic", putStatic},             //b3
-		{"getfield", unknown},                //b4
-		{"putfield", unknown},                //b5
-		{"invokevirtual", invokevirtual},     //b6
-		{"invokespecial", invokespecial},     //b7
-		{"invokestatic", invokestatic},       //b8
-		{"invokeinterface", invokeinterface}, //b9
-		{"invokedynamic", invokedynamic},     //ba
-		{"new", unknown},                     //bb
-		{"newarray", unknown},                //bc
-		{"anewarray", unknown},               //bd
-		{"arraylength", unknown},             //be
-		{"athrow", unknown},                  //bf
-		{"checkcast", unknown},               //c0
-		{"instanceof", unknown},              //c1
-		{"monitorenter", unknown},            //c2
-		{"monitorexit", unknown},             //c3
-		{"wide", unknown},                    //c4
-		{"multianewarray", unknown},          //c5
-		{"ifnull", unknown},                  //c6
-		{"ifnonnull", unknown},               //c7
-		{"goto_w", unknown},                  //c8
-		{"jsr_w", unknown},                   //c9
-		{"breakpoint", unknown},              //ca
-		{"impdep1", unknown},                 //fe
-		{"impdep2", unknown},                 //ff
+		{"nop", 1, nop},                         //00
+		{"aconst_null", 1, unknown},             //01
+		{"iconst_m1", 1, unknown},               //02
+		{"iconst_0", 1, unknown},                //03
+		{"iconst_1", 1, unknown},                //04
+		{"iconst_2", 1, unknown},                //05
+		{"iconst_3", 1, unknown},                //06
+		{"iconst_4", 1, unknown},                //07
+		{"iconst_5", 1, unknown},                //08
+		{"lconst_0", 1, unknown},                //09
+		{"lconst_1", 1, unknown},                //0a
+		{"fconst_0", 1, unknown},                //0b
+		{"fconst_1", 1, unknown},                //0c
+		{"fconst_2", 1, unknown},                //0d
+		{"dconst_0", 1, unknown},                //0e
+		{"dconst_1", 1, unknown},                //0f
+		{"bipush", 1, unknown},                  //10
+		{"sipush", 1, unknown},                  //11
+		{"ldc", 1, ldc},                         //12
+		{"ldc_w", 1, unknown},                   //13
+		{"ldc2_w", 1, unknown},                  //14
+		{"iload", 1, unknown},                   //15
+		{"lload", 1, unknown},                   //16
+		{"fload", 1, unknown},                   //17
+		{"dload", 1, unknown},                   //18
+		{"aload", 1, unknown},                   //19
+		{"iload_0", 1, unknown},                 //1a
+		{"iload_1", 1, unknown},                 //1b
+		{"iload_2", 1, unknown},                 //1c
+		{"iload_3", 1, unknown},                 //1d
+		{"lload_0", 1, unknown},                 //1e
+		{"lload_1", 1, unknown},                 //1f
+		{"lload_2", 1, unknown},                 //20
+		{"lload_3", 1, unknown},                 //21
+		{"fload_0", 1, unknown},                 //22
+		{"fload_1", 1, unknown},                 //23
+		{"fload_2", 1, unknown},                 //24
+		{"fload_3", 1, unknown},                 //25
+		{"dload_0", 1, unknown},                 //26
+		{"dload_1", 1, unknown},                 //27
+		{"dload_2", 1, unknown},                 //28
+		{"dload_3", 1, unknown},                 //29
+		{"aload_0", 1, unknown},                 //2a
+		{"aload_1", 1, unknown},                 //2b
+		{"aload_2", 1, unknown},                 //2c
+		{"aload_3", 1, unknown},                 //2d
+		{"iaload", 1, unknown},                  //2e
+		{"laload", 1, unknown},                  //2f
+		{"faload", 1, unknown},                  //30
+		{"daload", 1, unknown},                  //31
+		{"aaload", 1, unknown},                  //32
+		{"baload", 1, unknown},                  //33
+		{"caload", 1, unknown},                  //34
+		{"saload", 1, unknown},                  //35
+		{"istore", 1, unknown},                  //36
+		{"lstore", 1, unknown},                  //37
+		{"fstore", 1, unknown},                  //38
+		{"dstore", 1, unknown},                  //39
+		{"astore", 1, unknown},                  //3a
+		{"istore_0", 1, unknown},                //3b
+		{"istore_1", 1, unknown},                //3c
+		{"istore_2", 1, unknown},                //3d
+		{"istore_3", 1, unknown},                //3e
+		{"lstore_0", 1, unknown},                //3f
+		{"lstore_1", 1, unknown},                //40
+		{"lstore_2", 1, unknown},                //41
+		{"lstore_3", 1, unknown},                //42
+		{"fstore_0", 1, unknown},                //43
+		{"fstore_1", 1, unknown},                //44
+		{"fstore_2", 1, unknown},                //45
+		{"fstore_3", 1, unknown},                //46
+		{"dstore_0", 1, unknown},                //47
+		{"dstore_1", 1, unknown},                //48
+		{"dstore_2", 1, unknown},                //49
+		{"dstore_3", 1, unknown},                //4a
+		{"astore_0", 1, unknown},                //4b
+		{"astore_1", 1, unknown},                //4c
+		{"astore_2", 1, unknown},                //4d
+		{"astore_3", 1, unknown},                //4e
+		{"iastore", 1, unknown},                 //4f
+		{"lastore", 1, unknown},                 //50
+		{"fastore", 1, unknown},                 //51
+		{"dastore", 1, unknown},                 //52
+		{"aastore", 1, unknown},                 //53
+		{"bastore", 1, unknown},                 //54
+		{"castore", 1, unknown},                 //55
+		{"sastore", 1, unknown},                 //56
+		{"pop", 1, unknown},                     //57
+		{"pop2", 1, unknown},                    //58
+		{"dup", 1, unknown},                     //59
+		{"dup_x1", 1, unknown},                  //5a
+		{"dup_x2", 1, unknown},                  //5b
+		{"dup2", 1, unknown},                    //5c
+		{"dup2_x1", 1, unknown},                 //5d
+		{"dup2_x2", 1, unknown},                 //5e
+		{"swap", 1, unknown},                    //5f
+		{"iadd", 1, unknown},                    //60
+		{"ladd", 1, unknown},                    //61
+		{"fadd", 1, unknown},                    //62
+		{"dadd", 1, unknown},                    //63
+		{"isub", 1, unknown},                    //64
+		{"lsub", 1, unknown},                    //65
+		{"fsub", 1, unknown},                    //66
+		{"dsub", 1, unknown},                    //67
+		{"imul", 1, unknown},                    //68
+		{"lmul", 1, unknown},                    //69
+		{"fmul", 1, unknown},                    //6a
+		{"dmul", 1, unknown},                    //6b
+		{"idiv", 1, unknown},                    //6c
+		{"ldiv", 1, unknown},                    //6d
+		{"fdiv", 1, unknown},                    //6e
+		{"ddiv", 1, unknown},                    //6f
+		{"irem", 1, unknown},                    //70
+		{"lrem", 1, unknown},                    //71
+		{"frem", 1, unknown},                    //72
+		{"drem", 1, unknown},                    //73
+		{"ineg", 1, unknown},                    //74
+		{"lneg", 1, unknown},                    //75
+		{"fneg", 1, unknown},                    //76
+		{"dneg", 1, unknown},                    //77
+		{"ishl", 1, unknown},                    //78
+		{"lshl", 1, unknown},                    //79
+		{"ishr", 1, unknown},                    //7a
+		{"lshr", 1, unknown},                    //7b
+		{"iushr", 1, unknown},                   //7c
+		{"lushr", 1, unknown},                   //7d
+		{"iand", 1, unknown},                    //7e
+		{"land", 1, unknown},                    //7f
+		{"ior", 1, unknown},                     //80
+		{"lor", 1, unknown},                     //81
+		{"ixor", 1, unknown},                    //82
+		{"lxor", 1, unknown},                    //83
+		{"iinc", 1, unknown},                    //84
+		{"i2l", 1, unknown},                     //85
+		{"i2f", 1, unknown},                     //86
+		{"i2d", 1, unknown},                     //87
+		{"l2i", 1, unknown},                     //88
+		{"l2f", 1, unknown},                     //89
+		{"l2d", 1, unknown},                     //8a
+		{"f2i", 1, unknown},                     //8b
+		{"f2l", 1, unknown},                     //8c
+		{"f2d", 1, unknown},                     //8d
+		{"d2i", 1, unknown},                     //8e
+		{"d2l", 1, unknown},                     //8f
+		{"d2f", 1, unknown},                     //90
+		{"i2b", 1, unknown},                     //91
+		{"i2c", 1, unknown},                     //92
+		{"i2s", 1, unknown},                     //93
+		{"lcmp", 1, unknown},                    //94
+		{"fcmpl", 1, unknown},                   //95
+		{"fcmpg", 1, unknown},                   //96
+		{"dcmpl", 1, unknown},                   //97
+		{"dcmpg", 1, unknown},                   //98
+		{"ifeq", 1, unknown},                    //99
+		{"ifne", 1, unknown},                    //9a
+		{"iflt", 1, unknown},                    //9b
+		{"ifge", 1, unknown},                    //9c
+		{"ifgt", 1, unknown},                    //9d
+		{"ifle", 1, unknown},                    //9e
+		{"if_icmpeq", 1, unknown},               //9f
+		{"if_icmpne", 1, unknown},               //a0
+		{"if_icmplt", 1, unknown},               //a1
+		{"if_icmpge", 1, unknown},               //a2
+		{"if_icmpgt", 1, unknown},               //a3
+		{"if_icmple", 1, unknown},               //a4
+		{"if_acmpeq", 1, unknown},               //a5
+		{"if_acmpne", 1, unknown},               //a6
+		{"goto", 1, unknown},                    //a7
+		{"jsr", 1, unknown},                     //a8
+		{"ret", 1, unknown},                     //a9
+		{"tableswitch", 1, unknown},             //aa
+		{"lookupswitch", 1, unknown},            //ab
+		{"ireturn", 1, unknown},                 //ac
+		{"lreturn", 1, unknown},                 //ad
+		{"freturn", 1, unknown},                 //ae
+		{"dreturn", 1, unknown},                 //af
+		{"areturn", 1, unknown},                 //b0
+		{"return", 1, returnVoid},               //b1
+		{"getstatic", 1, getStatic},             //b2
+		{"putstatic", 1, putStatic},             //b3
+		{"getfield", 1, unknown},                //b4
+		{"putfield", 1, unknown},                //b5
+		{"invokevirtual", 1, invokevirtual},     //b6
+		{"invokespecial", 1, invokespecial},     //b7
+		{"invokestatic", 1, invokestatic},       //b8
+		{"invokeinterface", 1, invokeinterface}, //b9
+		{"invokedynamic", 1, invokedynamic},     //ba
+		{"new", 1, unknown},                     //bb
+		{"newarray", 1, unknown},                //bc
+		{"anewarray", 1, unknown},               //bd
+		{"arraylength", 1, unknown},             //be
+		{"athrow", 1, unknown},                  //bf
+		{"checkcast", 1, unknown},               //c0
+		{"instanceof", 1, unknown},              //c1
+		{"monitorenter", 1, unknown},            //c2
+		{"monitorexit", 1, unknown},             //c3
+		{"wide", 1, unknown},                    //c4
+		{"multianewarray", 1, unknown},          //c5
+		{"ifnull", 1, unknown},                  //c6
+		{"ifnonnull", 1, unknown},               //c7
+		{"goto_w", 1, unknown},                  //c8
+		{"jsr_w", 1, unknown},                   //c9
+		{"breakpoint", 1, unknown},              //ca
+		{"impdep1", 1, unknown},                 //fe
+		{"impdep2", 1, unknown},                 //ff
 	}
 }
 
@@ -263,7 +264,6 @@ func invokedynamic(code []byte, f *Frame) error {
 		return fmt.Errorf("non-zero byte found in invokedynamic instruction")
 	}
 
-
 	invokeDynamic := f.Class.Constants[targetIndex].Value.(ConstantInvokeDynamic)
 
 	name, descriptor, err := f.Class.GetNameAndType(invokeDynamic.NameAndTypeIndex)
@@ -283,6 +283,28 @@ func invokedynamic(code []byte, f *Frame) error {
 // invokevirtual
 func invokevirtual(code []byte, f *Frame) error {
 	fmt.Printf("Exec: invokevirtual\n")
+	methodRefIndex := code[f.IP+1]<<8 | code[f.IP+2]
+	methodref := f.Class.Constants[methodRefIndex].Value.(ConstantMethodref)
+
+	nameAndType := f.Class.Constants[methodref.NameAndTypeIndex].Value.(ConstantNameAndType)
+	name, err := f.Class.GetUTF8Constant(nameAndType.NameIndex)
+	if err != nil {
+		return err
+	}
+	descriptor, err := f.Class.GetUTF8Constant(nameAndType.DescriptorIndex)
+	if err != nil {
+		return err
+	}
+
+	objectRefIndex, err := f.PopOperand()
+	if err != nil {
+		return err
+	}
+	fmt.Printf("Got object ref: %v\n", objectRefIndex)
+
+	fmt.Printf("%s %s\n", name, descriptor)
+
+
 	return f.Step(3)
 }
 
