@@ -13,20 +13,19 @@ import (
 func main() {
 	metaspace := jvm.NewMetaspace()
 
-	//Load the intrinsics
-	classes := intrinsics.Classes()
-	for i, _ := range intrinsics.Classes() {
-		if err := metaspace.LoadFromStruct(&classes[i]); err != nil {
-			log.Fatalf("failed to load intrinsics: %v\n", err)
-		}
-	}
-
 	// Load the classpath
 	if err := classloader.LoadFromClasspath(os.Args[1], metaspace); err != nil {
 		log.Fatal(err)
 	}
 
+	if err := intrinsics.PatchSystem(metaspace); err != nil {
+		log.Fatal(err)
+	}
+
 	metaspace.DumpHeap()
+	if err := metaspace.InitClasses(); err != nil {
+		log.Fatal(err)
+	}
 
 	fmt.Printf("Main Class: %s\n", os.Args[2])
 	mainClassName := strings.Replace(os.Args[2], ".", "/", -1)
@@ -35,9 +34,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if err := class.Invoke("<clinit>"); err != nil {
-		log.Fatal(err)
-	}
+	//if err := class.Invoke("<clinit>"); err != nil {
+	//	log.Fatal(err)
+	//}
 	if err := class.Invoke("main"); err != nil {
 		log.Fatal(err)
 	}

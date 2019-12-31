@@ -31,7 +31,12 @@ func (c *Class) Invoke(methodName string, args ...interface{}) error {
 	codeAttribute := method.Attributes[0].Value.(*CodeAttribute)
 	//asm.Disassemble(codeAttribute.Code)
 
-	return Execute(codeAttribute.Code, c)
+	baseFrame := NewStackFrame()
+
+	if err := baseFrame.PushOperands(args); err != nil {
+		return err
+	}
+	return Execute(baseFrame, codeAttribute.Code, c)
 }
 
 func (c *Class) AddAttribute(attribute *Attribute) {
@@ -73,9 +78,8 @@ func (c *Class) GetNameAndType(index uint16) (name string, descriptor string, er
 	return name, descriptor, nil
 }
 
-
 func (c *Class) AddMethod(method *Method) {
-	fmt.Printf("Adding method %s\n", method.Name)
+	//fmt.Printf("Adding method %s\n", method.Name)
 	c.Methods[method.Name] = method
 }
 

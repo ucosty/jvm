@@ -1,16 +1,17 @@
 package intrinsics
 
 import (
+	"fmt"
 	"github.com/ucosty/jvm/pkg/jvm"
 )
 
-func Classes() []jvm.Class {
-	return []jvm.Class{
-		{Name: "java/lang/Object", Superclass: ""},
-		{Name: "java/lang/String", Superclass: "java/lang/Object"},
-		{Name: "java/lang/invoke/StringConcatFactory", Superclass: "java/lang/Object"},
-		{Name: "java/lang/invoke/MethodType", Superclass: "java/lang/Object"},
-		{Name: "java/lang/invoke/MethodHandles", Superclass: "java/lang/Object"},
-		{Name: "java/lang/invoke/CallSite", Superclass: "java/lang/Object"},
+func PatchSystem(metaspace *jvm.Metaspace) error {
+	class, err := metaspace.GetClass("java/lang/System")
+	if err != nil {
+		return err
 	}
+	fmt.Printf("PatchSystem:\n%v\n---------\n", class.Fields[0].AccessFlags)
+
+
+	return nil
 }

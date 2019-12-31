@@ -6,10 +6,10 @@ import (
 	"encoding/binary"
 	"fmt"
 	"github.com/ucosty/jvm/pkg/jvm"
+	"github.com/yargevad/filepathx"
 	"log"
 	"os"
 	"path"
-	"path/filepath"
 )
 
 func readClassFile(filename string) ([]byte, error) {
@@ -33,12 +33,6 @@ func readClassFile(filename string) ([]byte, error) {
 
 	return fileBytes, err
 }
-
-//func getClassName(index uint16, f *ClassFile) string {
-//	constClass := f.ConstantPoolTable[index-1].(constantClassEntry)
-//	name := f.ConstantPoolTable[constClass.NameIndex-1].(constantUTF8InfoEntry)
-//	return string(name.Bytes)
-//}
 
 func parseHeader(classBytes []byte) (class *jvm.Class, err error) {
 	var header ClassFile
@@ -119,7 +113,7 @@ func loadFromFile(filename string) (*jvm.Class, error) {
 }
 
 func LoadFromClasspath(dir string, metaspace *jvm.Metaspace) error {
-	files, err := filepath.Glob(path.Join(dir, "*.class"))
+	files, err := filepathx.Glob(path.Join(dir, "**/*.class"))
 	if err != nil {
 		log.Fatal(err)
 	}

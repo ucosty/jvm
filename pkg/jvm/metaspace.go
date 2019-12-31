@@ -21,7 +21,7 @@ func NewMetaspace() *Metaspace {
 
 func (m *Metaspace) GetClass(name string) (*Class, error) {
 	if _, exists := m.Classes[name]; !exists {
-		return nil, fmt.Errorf("class %s not foun", name)
+		return nil, fmt.Errorf("class %s not found", name)
 	}
 	return m.Classes[name], nil
 }
@@ -32,8 +32,15 @@ func (m *Metaspace) LoadFromStruct(class *Class) error {
 	}
 	fmt.Printf("Loading class %s\n", class.Name)
 	m.Classes[class.Name] = class
-	if err := m.loadConstants(class); err != nil {
-		return fmt.Errorf("could not load constants for %s: %v", class.Name, err)
+	return nil
+}
+
+func (m *Metaspace) InitClasses() error {
+	for k, _ := range m.Classes {
+		class := m.Classes[k]
+		if err := m.loadConstants(class); err != nil {
+			return fmt.Errorf("could not load constants for %s: %v", class.Name, err)
+		}
 	}
 	return nil
 }
